@@ -14,10 +14,31 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### How to install
 
-1. Download `PokeGuide-v1.0.0.apk` from the link above
+1. Download `PokeGuide-v1.1.0.apk` from the link above
 2. On your Android device, go to **Settings → Security** (or **Apps → Special access**) and allow installation from unknown sources for your browser/file manager
 3. Tap the downloaded APK file and follow the prompts
 4. Open **PokéGuide** from your app drawer — look for the red Pokéball icon
+
+> **Upgrading from v1.0.0?** Just install the new APK — Android will update the existing app and keep your settings.
+
+---
+
+## 📝 Changelog
+
+### v1.1.0 — *Latest*
+
+- 🗺️ **Location emojis** — each location type now has a distinct, consistent emoji icon (routes, caves, forests, cities, towers, gyms, seas, etc.) that stays consistent across every region and every game's map data
+- 🎨 **Improved theme toggle** — icon now correctly reflects the action: shows 🌙 in dark mode (tap to go light) and ☀️ in light mode (tap to go dark)
+- 📇 **Grid view for Pokédex** — toggle between list and grid layouts; grid view shows larger sprites in a tighter, more scannable arrangement
+- 💾 **Persistent settings** — your theme choice, game filter, and Pokédex view (list/grid) are now saved and restored when you reopen the app — no more resetting every launch
+
+### v1.0.0
+
+- Initial release
+- Full Pokédex, Moves, TMs/HMs, Items, Locations, Type Chart
+- Global game filter with 21 game versions
+- Light & dark themes
+- Custom Pokéball launcher icon
 
 ---
 
@@ -25,6 +46,7 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### 🔴 Pokédex
 - Browse all **1,025 Pokémon** across all 9 generations
+- **Toggle between list and grid views** — grid view shows larger sprites for quick visual scanning
 - Official sprites, Pokédex numbers, and names
 - Fast search by name or Pokédex number
 
@@ -56,6 +78,7 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### 📍 Locations
 - Drill down from Region → Location → Encounter details
+- **Location type emojis** — every location gets a distinct icon (route, cave, forest, city, tower, gym, sea, etc.) that stays consistent across all regions and games
 - Every region from Kanto to Paldea
 - Each encounter shows the Pokémon, which games it appears in, and level range
 - Tap any Pokémon to jump to its Pokédex detail
@@ -70,9 +93,15 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 - Choose from **21 game versions**, from Red/Blue through Scarlet/Violet
 - Each game shown with its own colored icon and abbreviation (RB, GS, RS, FRLG, DP, BW, XY, SM, SwSh, BDSP, LA, SV, etc.)
 - **Persistent across the entire app** — your selection filters Pokédex, Items, Moves, TMs/HMs, and Pokémon move lists globally
+- Your selection is **remembered between sessions**
 
 ### 🌓 Light & Dark Themes
 - One-tap toggle on every major screen
+- The icon shows what tapping it will do (🌙 in dark mode, ☀️ in light mode)
+- **Theme choice is saved** and restored when you reopen the app
+
+### 💾 Persistent Settings
+All your preferences — theme, game filter, Pokédex view (list/grid) — are saved locally and restored on next launch. No re-configuring every time you open the app.
 
 ---
 
@@ -110,7 +139,7 @@ Requires **Android Studio** (Hedgehog or newer).
 2. Open the project in Android Studio and let Gradle sync
 3. Select the `release` build variant: **Build → Select Build Variant** → `release`
 4. Build the APK: **Build → Build Bundle(s) / APK(s) → Build APK(s)**
-5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.0.0.apk`
+5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.1.0.apk`
 
 The release build is signed with the standard Android debug keystore for easy local installs. If you don't have one, run:
 ```bash
@@ -122,8 +151,9 @@ keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -alias
 | Layer        | Tech                                         |
 | ------------ | -------------------------------------------- |
 | **Android**  | Java, native WebView, single `MainActivity`  |
-| **Frontend** | Pure vanilla JavaScript, HTML, CSS (single file, ~66KB) |
+| **Frontend** | Pure vanilla JavaScript, HTML, CSS (single file) |
 | **Styling**  | CSS custom properties for light/dark theming |
+| **Storage**  | `localStorage` for persistent settings       |
 | **Data**     | [PokéAPI](https://pokeapi.co) (live)         |
 | **Build**    | Gradle 8.0, AGP 8.1, minSdk 24, targetSdk 34 |
 

@@ -122,6 +122,13 @@ input{color:var(--tx)}input::placeholder{color:var(--tx3)}
 .game-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--tx3);flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .game-check.on{background:#3A8AD6;border-color:#3A8AD6}
 
+/* Pokédex grid view */
+.dex-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;background:var(--bg)}
+.dex-grid-cell{background:var(--card);border:0.5px solid var(--border2);border-radius:10px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden}
+.dex-grid-cell:active{background:var(--card2)}
+.dex-grid-cell img{width:72%;height:72%;image-rendering:pixelated;object-fit:contain}
+.dex-grid-cell .dex-grid-num{position:absolute;bottom:2px;left:4px;font-size:8px;color:var(--tx3);font-family:monospace;font-weight:600}
+
 /* Pokemon grid for Learners */
 .pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:8px;padding:4px}
 .pk-cell{display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;border-radius:8px}
@@ -183,6 +190,7 @@ var S={
   tab:'dex',
   game:null, // null = ALL
   theme:'dark',
+  dexViewMode:'list', // 'list' or 'grid'
   
   // dex
   dexList:[],dexQ:'',dexPage:0,dexView:'list',
@@ -213,15 +221,37 @@ var cache={};
 var mvDetCache={}; // move name → {power, accuracy, type, dmgClass, short}
 function af(url){if(!cache[url]){cache[url]=fetch(url).then(function(r){return r.json();}).catch(function(e){delete cache[url];throw e;});}return cache[url];}
 
+// ── Persistent preferences (localStorage) ──
+var PREF_KEY='pokeguide.prefs.v1';
+function loadPrefs(){
+  try{
+    var raw=localStorage.getItem(PREF_KEY);
+    if(!raw)return;
+    var p=JSON.parse(raw);
+    if(p.theme==='dark'||p.theme==='light')S.theme=p.theme;
+    if(p.dexViewMode==='list'||p.dexViewMode==='grid')S.dexViewMode=p.dexViewMode;
+    if(p.game===null||typeof p.game==='string')S.game=p.game;
+  }catch(e){}
+}
+function savePrefs(){
+  try{
+    localStorage.setItem(PREF_KEY,JSON.stringify({
+      theme:S.theme,
+      dexViewMode:S.dexViewMode,
+      game:S.game
+    }));
+  }catch(e){}
+}
+
 function toggleTheme(){
   S.theme=S.theme==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme',S.theme);
-  // Update theme toggle icons in current view
+  savePrefs();
   var btns=document.querySelectorAll('.theme-toggle');
-  for(var i=0;i<btns.length;i++)btns[i].innerHTML=S.theme==='dark'?'☀':'🌙';
+  for(var i=0;i<btns.length;i++)btns[i].innerHTML=S.theme==='dark'?'🌙':'☀';
 }
 function themeBtnHTML(){
-  return '<button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">'+(S.theme==='dark'?'☀':'🌙')+'</button>';
+  return '<button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">'+(S.theme==='dark'?'🌙':'☀')+'</button>';
 }
 
 // Move metadata icons
@@ -296,6 +326,7 @@ function selectGame(id){
   S.game=id;
   S.dexPage=0;S.itemPage=0;S.mvPage=0;
   S.tmLoaded=false;S.tmLoading=false;S.tmList=[];
+  savePrefs();
   closeModal();
   // Re-render ALL panes so switching between tabs reflects the new filter
   if(S.dexView==='list')pane('dex').innerHTML=renderDexList();
@@ -348,22 +379,45 @@ function renderDexListItems(){
   var filt=dexFilt(),maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);
   if(S.dexPage>maxPg)S.dexPage=0;
   var paged=filt.slice(S.dexPage*PER,(S.dexPage+1)*PER);
-  var listHtml=S.dexList.length===0?'<div class="empty">Loading Pokédex…</div>':paged.map(function(p){
-    var id=gid(p.url);
-    return '<div class="list-item" onclick="openDex(\''+p.name+'\',\''+p.url+'\')">'+
-      '<img src="'+spr(id)+'" width="48" height="48" style="image-rendering:pixelated;flex-shrink:0"/>'+
-      '<div style="flex:1"><div class="dex-num">#'+String(id).padStart(4,'0')+'</div>'+
-      '<div class="dex-name">'+cap(p.name)+'</div></div>'+
-      '<span style="color:#3A3A48;font-size:18px">›</span></div>';
-  }).join('');
+  var listHtml;
+  if(S.dexList.length===0){
+    listHtml='<div class="empty">Loading Pokédex…</div>';
+  } else if(S.dexViewMode==='grid'){
+    listHtml='<div class="dex-grid">'+paged.map(function(p){
+      var id=gid(p.url);
+      return '<div class="dex-grid-cell" onclick="openDex(\''+p.name+'\',\''+p.url+'\')">'+
+        '<img src="'+spr(id)+'" onerror="this.style.visibility=\'hidden\'" alt=""/>'+
+        '<span class="dex-grid-num">#'+String(id).padStart(4,'0')+'</span>'+
+        '</div>';
+    }).join('')+'</div>';
+  } else {
+    listHtml=paged.map(function(p){
+      var id=gid(p.url);
+      return '<div class="list-item" onclick="openDex(\''+p.name+'\',\''+p.url+'\')">'+
+        '<img src="'+spr(id)+'" width="48" height="48" style="image-rendering:pixelated;flex-shrink:0"/>'+
+        '<div style="flex:1"><div class="dex-num">#'+String(id).padStart(4,'0')+'</div>'+
+        '<div class="dex-name">'+cap(p.name)+'</div></div>'+
+        '<span style="color:#3A3A48;font-size:18px">›</span></div>';
+    }).join('');
+  }
   return {listHtml:listHtml,filt:filt,maxPg:maxPg};
+}
+function toggleDexView(){
+  S.dexViewMode=S.dexViewMode==='list'?'grid':'list';
+  savePrefs();
+  updateDexListOnly();
+  // Also update the toggle button icon in place
+  var btn=document.getElementById('dex-view-btn');
+  if(btn)btn.innerHTML=S.dexViewMode==='grid'?'☰':'⊞';
 }
 function renderDexList(){
   var r=renderDexListItems();
   var g=S.game?gameById(S.game):null;
+  var viewBtnIc=S.dexViewMode==='grid'?'☰':'⊞';
   return '<div class="screen">'+
     '<div class="topbar">'+
       '<div class="topbar-title">Pokédex</div>'+
+      '<button id="dex-view-btn" class="icon-btn" onclick="toggleDexView()" title="Toggle view" style="font-size:18px">'+viewBtnIc+'</button>'+
       themeBtnHTML()+
       '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
     '</div>'+
@@ -657,6 +711,54 @@ function renderTypes(){
 function setTypeMode(m){S.typeMode=m;pane('types').innerHTML=renderTypes();}
 
 // ── LOCATIONS ──
+// Pick an appropriate emoji for a location name based on keywords
+function locIcon(name){
+  var n=(name||'').toLowerCase();
+  // Order matters — match most specific first
+  if(/victory-road|pokemon-league|elite-four|indigo-plateau|league/.test(n))return '🏆';
+  if(/power-plant|plant/.test(n))return '⚡';
+  if(/mansion|chateau|villa/.test(n))return '🏚️';
+  if(/lighthouse|tower|radio-tower|sky-pillar|pillar/.test(n))return '🗼';
+  if(/gym/.test(n))return '🥊';
+  if(/mart|store|department/.test(n))return '🏪';
+  if(/center|centre/.test(n))return '🏥';
+  if(/lab|laboratory|institute|research/.test(n))return '🔬';
+  if(/factory/.test(n))return '🏭';
+  if(/tunnel|underground|subway/.test(n))return '🚇';
+  if(/cave|cavern|grotto|chamber|hollow/.test(n))return '🕳️';
+  if(/mine|mineshaft/.test(n))return '⛏️';
+  if(/mt-|mount|mountain|peak|summit|ridge|cliff|highland/.test(n))return '⛰️';
+  if(/volcano|crater/.test(n))return '🌋';
+  if(/forest|woods|grove|jungle|meadow/.test(n))return '🌲';
+  if(/garden|park|field|prairie|fields/.test(n))return '🌳';
+  if(/desert|sand|dune/.test(n))return '🏜️';
+  if(/snow|ice|glacier|frost|icicle|cold/.test(n))return '❄️';
+  if(/beach|shore|coast|seaside|cape/.test(n))return '🏖️';
+  if(/island|isle|atoll|archipelago/.test(n))return '🏝️';
+  if(/lake|pond/.test(n))return '🏞️';
+  if(/river|stream|creek|waterfall/.test(n))return '🌊';
+  if(/sea|ocean|bay|gulf|marine|underwater|undersea|seafloor|abyss/.test(n))return '🌊';
+  if(/swamp|marsh|bog|wetland|mire/.test(n))return '🪵';
+  if(/safari/.test(n))return '🦁';
+  if(/ruins|tomb|temple|shrine|altar|sanctum|burial/.test(n))return '⛩️';
+  if(/tower/.test(n))return '🗼';
+  if(/castle|palace|fortress/.test(n))return '🏰';
+  if(/resort|hotel|spa|hot-spring/.test(n))return '♨️';
+  if(/stadium|colosseum|arena|battle/.test(n))return '🏟️';
+  if(/pier|harbor|harbour|dock|port|wharf/.test(n))return '⚓';
+  if(/bridge/.test(n))return '🌉';
+  if(/tunnel|underpass/.test(n))return '🚇';
+  if(/path|trail/.test(n))return '🛤️';
+  if(/route/.test(n))return '🛣️';
+  if(/town|village|hamlet|settlement/.test(n))return '🏘️';
+  if(/city|metropolis/.test(n))return '🏙️';
+  if(/house|cottage|cabin/.test(n))return '🏠';
+  if(/sky|cloud|air/.test(n))return '☁️';
+  if(/space|cosmic|distortion|dimension/.test(n))return '🌌';
+  if(/graveyard|cemetery/.test(n))return '⚰️';
+  // default
+  return '📍';
+}
 function renderLocs(){
   if(S.locView==='encs')return renderLocEncs();
   if(S.locView==='locs')return renderLocList();
@@ -671,7 +773,13 @@ function renderLocs(){
 }
 function renderLocList(){
   var items=S.locLocs.length===0?'<div class="empty">Loading…</div>':
-    S.locLocs.map(function(l){return '<div class="list-item" onclick="selLoc(\''+l.name+'\',\''+l.url+'\')"><span style="flex:1;font-size:14px;font-weight:600;text-transform:capitalize">'+cap(l.name)+'</span><span style="color:#3A3A48;font-size:18px">›</span></div>';}).join('');
+    S.locLocs.map(function(l){
+      var ic=locIcon(l.name);
+      return '<div class="list-item" onclick="selLoc(\''+l.name+'\',\''+l.url+'\')">'+
+        '<div style="width:34px;height:34px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+ic+'</div>'+
+        '<span style="flex:1;font-size:14px;font-weight:600;text-transform:capitalize">'+cap(l.name)+'</span>'+
+        '<span style="color:#3A3A48;font-size:18px">›</span></div>';
+    }).join('');
   return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="locBack(\'regions\')">‹</button><div class="topbar-title">'+cap(S.locReg?S.locReg.name:'')+'</div></div><div class="scroll">'+items+'</div></div>';
 }
 function renderLocEncs(){
@@ -1153,6 +1261,7 @@ function closeItem(){S.itemView='list';pane('items').innerHTML=renderItems();}
 // ── INIT ──
 window.onerror=function(msg,src,line,col,err){document.body.innerHTML='<div style="background:#fff;padding:20px;font-family:monospace;font-size:12px;color:red;white-space:pre-wrap;overflow:auto">ERR: '+msg+'\nL'+line+':'+col+'\n'+(err&&err.stack?err.stack:'')+'</div>';return true;};
 function init(){
+  loadPrefs();
   document.documentElement.setAttribute('data-theme',S.theme);
   var tc=document.getElementById('tab-content');
   tc.innerHTML=TABS.map(function(t){return '<div class="tab-pane'+(t.id==='dex'?' act':'')+'" data-tab="'+t.id+'"></div>';}).join('');
