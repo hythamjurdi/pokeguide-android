@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="referrer" content="no-referrer"/>
+<title>PokéGuide</title>
+<style>
+:root, [data-theme="dark"] {
+  --bg: #0A0A0F; --card: #141420; --card2: #1A1A24; --active: #2C2C38;
+  --tx: #F0F0F5; --tx2: #9B9BA8; --tx3: #6B6B78;
+  --border: rgba(255,255,255,0.06); --border2: rgba(255,255,255,0.04);
+  --topbar: rgba(20,20,28,0.95); --btn-bg: rgba(255,255,255,0.1);
+  --scrollbar: rgba(255,255,255,0.15);
+}
+[data-theme="light"] {
+  --bg: #F0F2F8; --card: #FFFFFF; --card2: #EEF0F6; --active: #FFFFFF;
+  --tx: #1C1C1E; --tx2: #555560; --tx3: #8E8E93;
+  --border: rgba(0,0,0,0.08); --border2: rgba(0,0,0,0.05);
+  --topbar: rgba(255,255,255,0.95); --btn-bg: rgba(0,0,0,0.07);
+  --scrollbar: rgba(0,0,0,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg);font-family:-apple-system,system-ui,sans-serif;color:var(--tx)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:3px}
+button,input{font-family:inherit;-webkit-appearance:none;outline:none;color:inherit}
+input{color:var(--tx)}input::placeholder{color:var(--tx3)}
+#app{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+
+.bnav-wrap{flex-shrink:0;padding:5px 10px 7px;background:var(--topbar);border-top:0.5px solid var(--border);box-shadow:0 -3px 18px rgba(0,0,0,0.5)}
+.bnav{display:flex;background:var(--card2);border-radius:18px;padding:3px;gap:2px}
+.bnb{flex:1;padding:7px 3px;border-radius:15px;border:none;cursor:pointer;font-size:9px;font-weight:700;background:transparent;color:var(--tx3);display:flex;flex-direction:column;align-items:center;gap:2px}
+.bnb.act{background:var(--active);color:var(--tx);box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.bnb-ic{font-size:18px;line-height:1.1}
+
+.tab-content{flex:1;min-height:0;overflow:hidden;position:relative}
+.tab-pane{position:absolute;top:0;left:0;right:0;bottom:0;display:none;overflow:hidden}
+.tab-pane.act{display:block}
+.screen{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
+
+.topbar{display:flex;align-items:center;gap:10px;padding:10px 14px 8px;flex-shrink:0;background:var(--topbar);border-bottom:0.5px solid var(--border)}
+.topbar-title{font-size:16px;font-weight:800;color:var(--tx);flex:1;letter-spacing:-0.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+.back-btn{width:34px;height:34px;background:var(--btn-bg);border:none;border-radius:50%;cursor:pointer;font-size:18px;color:var(--tx);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.icon-btn{width:34px;height:34px;background:var(--btn-bg);border:none;border-radius:50%;cursor:pointer;font-size:16px;color:var(--tx);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.game-badge{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;cursor:pointer;overflow:hidden;position:relative}
+
+.scroll{flex:1;min-height:0;overflow-y:scroll;-webkit-overflow-scrolling:touch}
+
+.search-wrap{padding:9px 12px 7px;background:var(--topbar);border-bottom:0.5px solid var(--border);flex-shrink:0}
+.srch{width:100%;background:var(--card2);border:none;border-radius:11px;padding:9px 13px;font-size:14px}
+
+.list-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--card);border-bottom:0.5px solid var(--border2);cursor:pointer}
+.list-item:active{background:var(--card2)}
+.dex-num{font-size:10px;color:var(--tx3);font-family:monospace}
+.dex-name{font-size:15px;font-weight:600;color:var(--tx);text-transform:capitalize}
+
+.pg-row{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:var(--topbar);border-top:0.5px solid var(--border);flex-shrink:0}
+.pg-btn{padding:7px 16px;background:var(--card2);border:none;border-radius:10px;color:var(--tx);cursor:pointer;font-size:13px;font-weight:700}
+.pg-btn:disabled{opacity:0.3;cursor:default}
+.pg-info{font-size:11px;color:var(--tx3)}
+
+.det-wave{position:absolute;bottom:0;left:0;right:0;height:40px;background:var(--bg);border-radius:50% 50% 0 0/40px 40px 0 0;z-index:1}
+
+.det-tabs{display:flex;background:var(--topbar);border-top:0.5px solid var(--border);padding:5px 12px;position:absolute;left:0;right:0;bottom:0;z-index:5;transition:transform .25s ease-out;will-change:transform}
+.det-tabs.hidden{transform:translateY(100%)}
+.dtb{flex:1;padding:7px 3px 6px;border-radius:12px;border:none;cursor:pointer;font-size:9px;font-weight:700;background:transparent;color:var(--tx3);display:flex;flex-direction:column;align-items:center;gap:2px}
+.dtb.act{background:var(--active);color:var(--tx)}
+.dtb-ic{font-size:16px}
+
+.card{background:var(--card);border-radius:16px;padding:13px 14px;margin-bottom:11px;border:0.5px solid var(--border)}
+.card-title{font-size:16px;font-weight:800;color:var(--tx);margin-bottom:10px;letter-spacing:-0.02em}
+
+.sbar{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.sbar-l{width:36px;font-size:10px;font-weight:700;color:#FF9F0A;text-align:right}
+.sbar-v{width:28px;font-size:13px;font-weight:700;color:var(--tx);text-align:right}
+.sbar-t{flex:1;height:6px;background:var(--card2);border-radius:3px;overflow:hidden}
+.sbar-f{height:100%;border-radius:3px;background:linear-gradient(90deg,#FF9F0A,#FFCA50)}
+
+.tcir{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tcir-d{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.tcir-l{font-size:9px;font-weight:900;color:rgba(255,255,255,0.95);text-transform:uppercase}
+.tcir-m{font-size:10px;font-weight:700;color:var(--tx3)}
+
+.tpill{display:inline-flex;align-items:center;border-radius:99px;padding:5px 13px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;gap:5px}
+
+/* Move list rich row */
+.mv-row{display:flex;align-items:center;gap:8px;padding:11px 12px;background:var(--card);border-bottom:0.5px solid var(--border2);cursor:pointer}
+.mv-row:active{background:var(--card2)}
+.mv-row-main{flex:1;min-width:0;overflow:hidden}
+.mv-row-name{font-size:14px;font-weight:700;color:var(--tx);text-transform:capitalize;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mv-row-desc{font-size:10px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
+.mv-stat-pill{display:flex;background:var(--card2);border-radius:11px;overflow:hidden;flex-shrink:0;border:0.5px solid var(--border2)}
+.mv-stat-cell{padding:4px 7px;min-width:28px;text-align:center;font-size:11px;font-weight:700;color:var(--tx);border-right:0.5px solid var(--border)}
+.mv-stat-cell:last-child{border-right:none}
+.mv-tc{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mv-dc{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:#fff}
+.mv-tc span{font-size:7px;font-weight:900;color:rgba(255,255,255,0.95);letter-spacing:.02em}
+.mv-ph{width:26px;height:26px;flex-shrink:0}
+.mv-no{font-size:10px;color:var(--tx3);flex-shrink:0;font-weight:600;font-variant-numeric:tabular-nums;min-width:36px}
+.mv-no b{color:var(--tx2);font-size:11px}
+
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.info-k{font-size:11px;color:var(--tx3);margin-bottom:2px}
+.info-v{font-size:13px;font-weight:700;color:var(--tx)}
+.empty{flex:1;display:flex;align-items:center;justify-content:center;color:var(--tx3);font-size:14px;text-align:center;padding:20px}
+
+.seg{display:flex;background:var(--card2);border-radius:11px;padding:3px;gap:2px;margin-bottom:11px}
+.seg-btn{flex:1;padding:7px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:700;background:transparent;color:var(--tx3)}
+.seg-btn.act{background:var(--active);color:var(--tx);box-shadow:0 1px 5px rgba(0,0,0,0.2)}
+
+.section-label{font-size:36px;font-weight:900;color:var(--tx);padding:12px 14px 4px;letter-spacing:-0.04em;background:var(--bg)}
+
+/* Game picker modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:50;display:flex;flex-direction:column;padding-top:30px}
+.modal-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--topbar);flex-shrink:0;border-bottom:0.5px solid var(--border)}
+.modal-title{flex:1;text-align:center;font-size:16px;font-weight:800}
+.modal-body{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;background:var(--bg)}
+.game-row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:0.5px solid var(--border2);cursor:pointer;background:var(--bg)}
+.game-row:active{background:var(--card)}
+.game-row-ic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:14px;flex-shrink:0;overflow:hidden;position:relative}
+.game-row-name{flex:1;font-size:15px;font-weight:600}
+.game-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--tx3);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.game-check.on{background:#3A8AD6;border-color:#3A8AD6}
+
+/* Pokemon grid for Learners */
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:8px;padding:4px}
+.pk-cell{display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;border-radius:8px}
+.pk-cell:active{background:var(--card2)}
+.pk-cell img{width:52px;height:52px;image-rendering:pixelated}
+.pk-cell-num{font-size:8px;color:var(--tx3);font-family:monospace}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="tab-content" id="tab-content"></div>
+  <div class="bnav-wrap"><div class="bnav" id="bnav"></div></div>
+</div>
+<div id="modal-root"></div>
+<script>
+var API='https://pokeapi.co/api/v2';
+var PER=40;
+
+// ── Type colors & effectiveness ──
+var TC={normal:'#9FA09E',fire:'#FD7D24',water:'#4592C4',electric:'#D4AC0D',grass:'#5DAA56',ice:'#4FC4E0',fighting:'#CE4265',poison:'#A860C0',ground:'#D97845',flying:'#748FC9',psychic:'#F366B9',bug:'#96A820',rock:'#B8A038',ghost:'#705898',dragon:'#7038F8',dark:'#705848',steel:'#A0A8C0',fairy:'#EE99AC'};
+var TYPES=['normal','fire','water','electric','grass','ice','fighting','poison','ground','flying','psychic','bug','rock','ghost','dragon','dark','steel','fairy'];
+var EFF={normal:{rock:.5,ghost:0,steel:.5},fire:{fire:.5,water:.5,grass:2,ice:2,bug:2,rock:.5,dragon:.5,steel:2},water:{fire:2,water:.5,grass:.5,ground:2,rock:2,dragon:.5},electric:{water:2,electric:.5,grass:.5,ground:0,flying:2,dragon:.5},grass:{fire:.5,water:2,grass:.5,poison:.5,ground:2,flying:.5,bug:.5,rock:2,dragon:.5,steel:.5},ice:{water:.5,grass:2,ice:.5,ground:2,flying:2,dragon:2,steel:.5,fire:.5},fighting:{normal:2,ice:2,poison:.5,flying:.5,psychic:.5,bug:.5,rock:2,ghost:0,dark:2,steel:2,fairy:.5},poison:{grass:2,poison:.5,ground:.5,rock:.5,ghost:.5,steel:0,fairy:2},ground:{fire:2,electric:2,grass:.5,poison:2,flying:0,bug:.5,rock:2,steel:2},flying:{electric:.5,grass:2,ice:.5,fighting:2,bug:2,rock:.5,steel:.5},psychic:{fighting:2,poison:2,psychic:.5,dark:0,steel:.5},bug:{fire:.5,grass:2,fighting:.5,poison:.5,flying:.5,psychic:2,ghost:.5,dark:2,steel:.5,fairy:.5},rock:{fire:2,ice:2,fighting:.5,ground:.5,flying:2,bug:2,steel:.5},ghost:{normal:0,psychic:2,ghost:2,dark:.5},dragon:{dragon:2,steel:.5,fairy:0},dark:{fighting:.5,psychic:2,ghost:2,dark:.5,fairy:.5},steel:{fire:.5,water:.5,electric:.5,ice:2,rock:2,steel:.5,fairy:2},fairy:{fire:.5,fighting:2,poison:.5,dragon:2,dark:2,steel:.5}};
+var GRR=[null,[1,151],[152,251],[252,386],[387,493],[494,649],[650,721],[722,809],[810,905],[906,1025]];
+var RCOL={kanto:'#e63946',johto:'#D4AC0D',hoenn:'#4592C4',sinnoh:'#705898',unova:'#888',kalos:'#F366B9',alola:'#FD7D24',galar:'#5DAA56',hisui:'#9EB7B8',paldea:'#7038F8'};
+
+// ── Games: id (version-group), label, gen, color ──
+// Order matches PokéAPI version-group IDs, most recent first
+var GAMES=[
+  {id:'scarlet-violet',n:'Scarlet & Violet',sh:'SV',gen:9,c1:'#D63729',c2:'#773EAE',ic:'SV'},
+  {id:'legends-arceus',n:'Legends: Arceus',sh:'LA',gen:8,c1:'#9EB7B8',c2:'#5E7778',ic:'LA'},
+  {id:'brilliant-diamond-and-shining-pearl',n:'Brilliant Diamond & Shining Pearl',sh:'BDSP',gen:8,c1:'#3DA8D3',c2:'#F5C0CE',ic:'BD'},
+  {id:'sword-shield',n:'Sword & Shield',sh:'SwSh',gen:8,c1:'#00A6DE',c2:'#BF004F',ic:'SS'},
+  {id:'lets-go-pikachu-lets-go-eevee',n:"Let's Go Pikachu & Eevee",sh:'LGPE',gen:7,c1:'#F0B042',c2:'#B9713B',ic:'LG'},
+  {id:'ultra-sun-ultra-moon',n:'Ultra Sun & Ultra Moon',sh:'USUM',gen:7,c1:'#EA7700',c2:'#2E4C9E',ic:'US'},
+  {id:'sun-moon',n:'Sun & Moon',sh:'SM',gen:7,c1:'#F1912B',c2:'#5599CA',ic:'SM'},
+  {id:'omega-ruby-alpha-sapphire',n:'Omega Ruby & Alpha Sapphire',sh:'ORAS',gen:6,c1:'#AB2813',c2:'#1E449C',ic:'OR'},
+  {id:'x-y',n:'X & Y',sh:'XY',gen:6,c1:'#0473BA',c2:'#B3202B',ic:'XY'},
+  {id:'black-2-white-2',n:'Black 2 & White 2',sh:'B2W2',gen:5,c1:'#302F37',c2:'#E2E3E5',ic:'B2'},
+  {id:'black-white',n:'Black & White',sh:'BW',gen:5,c1:'#2C2C33',c2:'#D8D8D8',ic:'BW'},
+  {id:'heartgold-soulsilver',n:'HeartGold & SoulSilver',sh:'HGSS',gen:4,c1:'#C5363D',c2:'#A8A2B1',ic:'HG'},
+  {id:'platinum',n:'Platinum',sh:'Pt',gen:4,c1:'#9E9EAE',c2:'#52525D',ic:'Pt'},
+  {id:'diamond-pearl',n:'Diamond & Pearl',sh:'DP',gen:4,c1:'#4898B8',c2:'#E087AE',ic:'DP'},
+  {id:'firered-leafgreen',n:'FireRed & LeafGreen',sh:'FRLG',gen:3,c1:'#E6422E',c2:'#61B061',ic:'FR'},
+  {id:'emerald',n:'Emerald',sh:'E',gen:3,c1:'#00A65B',c2:'#006639',ic:'E'},
+  {id:'ruby-sapphire',n:'Ruby & Sapphire',sh:'RS',gen:3,c1:'#AB2813',c2:'#1E449C',ic:'RS'},
+  {id:'crystal',n:'Crystal',sh:'C',gen:2,c1:'#4E9FD0',c2:'#2E5A7D',ic:'C'},
+  {id:'gold-silver',n:'Gold & Silver',sh:'GS',gen:2,c1:'#DAA520',c2:'#C0C0C0',ic:'GS'},
+  {id:'yellow',n:'Yellow',sh:'Y',gen:1,c1:'#F5D742',c2:'#B89F2B',ic:'Y'},
+  {id:'red-blue',n:'Red & Blue',sh:'RB',gen:1,c1:'#E6422E',c2:'#1F6FBC',ic:'RB'}
+];
+function gameById(id){for(var i=0;i<GAMES.length;i++)if(GAMES[i].id===id)return GAMES[i];return null;}
+function gameBadge(g,size){
+  if(!g)return '<div class="game-badge" style="width:'+size+'px;height:'+size+'px;background:linear-gradient(135deg,#e63946,#1F6FBC);font-size:'+Math.floor(size*0.42)+'px">ALL</div>';
+  return '<div class="game-badge" style="width:'+size+'px;height:'+size+'px;background:linear-gradient(135deg,'+g.c1+' 50%,'+g.c2+' 50%);font-size:'+Math.floor(size*0.36)+'px">'+g.ic+'</div>';
+}
+
+// ── State ──
+var S={
+  tab:'dex',
+  game:null, // null = ALL
+  theme:'dark',
+  
+  // dex
+  dexList:[],dexQ:'',dexPage:0,dexView:'list',
+  dexSelName:null,dexDet:null,dexSp:null,dexEv:null,dexEncs:null,dexLoading:false,
+  dexDtab:'info',dexShiny:false,dexMvMode:'level',
+  dexTabsHidden:false,dexLastScroll:0,
+  
+  typeMode:'atk',
+  
+  locView:'regions',locRegions:[],locReg:null,locLocs:[],locLoc:null,locEncs:null,locLoading:false,
+  
+  // moves
+  mvList:[],mvQ:'',mvPage:0,mvView:'list',
+  mvSelName:null,mvDet:null,mvLearners:null,mvLoadingLearners:false,
+  
+  // TM/HM
+  tmList:[],tmView:'list',tmSelMachine:null,tmDet:null,tmLearners:null,tmLoadingLearners:false,
+  tmLoaded:false,tmLoading:false,
+  
+  // items
+  itemList:[],itemQ:'',itemPage:0,itemView:'list',itemSelName:null,itemDet:null,
+  
+  // modal
+  modal:null // 'game-picker' | null
+};
+
+var cache={};
+var mvDetCache={}; // move name → {power, accuracy, type, dmgClass, short}
+function af(url){if(!cache[url]){cache[url]=fetch(url).then(function(r){return r.json();}).catch(function(e){delete cache[url];throw e;});}return cache[url];}
+
+function toggleTheme(){
+  S.theme=S.theme==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',S.theme);
+  // Update theme toggle icons in current view
+  var btns=document.querySelectorAll('.theme-toggle');
+  for(var i=0;i<btns.length;i++)btns[i].innerHTML=S.theme==='dark'?'☀':'🌙';
+}
+function themeBtnHTML(){
+  return '<button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">'+(S.theme==='dark'?'☀':'🌙')+'</button>';
+}
+
+// Move metadata icons
+function dcIcon(dc){
+  var cols={physical:'#E86A33',special:'#5C9EFF',status:'#9B9BA8'};
+  // Inline SVG for icons
+  var svg={
+    physical:'<svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M6 3l4 4-4 4 4 4-4 4 4 4M14 3l4 4-4 4 4 4-4 4 4 4" stroke="white" stroke-width="2" fill="none"/></svg>',
+    special:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="white"/></svg>',
+    status:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>'
+  };
+  return '<div class="mv-dc" style="background:'+cols[dc]+'">'+(svg[dc]||svg.status)+'</div>';
+}
+function tcIcon(t){
+  return '<div class="mv-tc" style="background:'+TC[t]+'"><span>'+t.slice(0,3).toUpperCase()+'</span></div>';
+}
+function cap(s){return s?s[0].toUpperCase()+s.slice(1).replace(/-/g,' '):''}
+function gid(url){return parseInt(url.split('/').filter(Boolean).pop())}
+function spr(id){return'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+id+'.png'}
+function artN(id){return'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'+id+'.png'}
+function artSh(id){return'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/'+id+'.png'}
+function esc(s){var x=String(s);x=x.replace(/&/g,'[AMP]');x=x.replace(/</g,'[LT]');x=x.replace(/>/g,'[GT]');x=x.replace(/"/g,'[QT]');x=x.replace(/\[AMP\]/g,'&amp;');x=x.replace(/\[LT\]/g,'&lt;');x=x.replace(/\[GT\]/g,'&gt;');x=x.replace(/\[QT\]/g,'&quot;');return x;}
+function ge(a,d){return(EFF[a]&&EFF[a][d]!==undefined)?EFF[a][d]:1}
+function calcMu(types){var e={};TYPES.forEach(function(a){var m=1;types.forEach(function(d){m*=ge(a,d);});if(m!==1)e[a]=m;});return e;}
+function multLbl(v){return v===0?'x0':v===.25?'x1/4':v===.5?'x1/2':v===2?'x2':'x4'}
+function tpill(t){return '<span class="tpill" style="background:'+TC[t]+'">'+t+'</span>'}
+function tcir(t,v){return '<div class="tcir"><div class="tcir-d" style="background:'+TC[t]+'"><span class="tcir-l">'+t.slice(0,3)+'</span></div><span class="tcir-m">'+multLbl(v)+'</span></div>'}
+function sbar(name,val){
+  var L={hp:'HP',attack:'ATK',defense:'DEF','special-attack':'SATK','special-defense':'SDEF',speed:'SPE'};
+  return '<div class="sbar"><span class="sbar-l">'+(L[name]||name.slice(0,4).toUpperCase())+'</span><span class="sbar-v">'+val+'</span><div class="sbar-t"><div class="sbar-f" style="width:'+Math.min(100,(val/255)*100)+'%"></div></div></div>';
+}
+function card(t,inner){return '<div class="card"><div class="card-title">'+t+'</div>'+inner+'</div>'}
+function iitem(k,v){return '<div><div class="info-k">'+k+'</div><div class="info-v">'+esc(String(v))+'</div></div>'}
+
+// ── TABS ──
+var TABS=[
+  {id:'dex',l:'Pokédex',ic:'⭕'},
+  {id:'types',l:'Types',ic:'🔀'},
+  {id:'locs',l:'Locations',ic:'📍'},
+  {id:'moves',l:'Moves',ic:'⚡'},
+  {id:'tms',l:'TM & HM',ic:'💿'},
+  {id:'items',l:'Items',ic:'🎒'}
+];
+function renderNav(){
+  document.getElementById('bnav').innerHTML=TABS.map(function(t){
+    return '<button class="bnb'+(S.tab===t.id?' act':'')+'" onclick="goTab(\''+t.id+'\')">'+
+      '<span class="bnb-ic">'+t.ic+'</span>'+t.l+'</button>';
+  }).join('');
+}
+function pane(id){return document.querySelector('[data-tab="'+id+'"]')}
+function goTab(id){
+  if(S.tab===id){
+    if(id==='dex'&&S.dexView!=='list'){S.dexView='list';S.dexSelName=null;pane('dex').innerHTML=renderDexList();}
+    else if(id==='locs'&&S.locView!=='regions'){S.locView='regions';pane('locs').innerHTML=renderLocs();}
+    else if(id==='items'&&S.itemView!=='list'){S.itemView='list';pane('items').innerHTML=renderItems();}
+    else if(id==='moves'&&S.mvView!=='list'){S.mvView='list';pane('moves').innerHTML=renderMoves();}
+    else if(id==='tms'&&S.tmView!=='list'){S.tmView='list';pane('tms').innerHTML=renderTMs();}
+    return;
+  }
+  S.tab=id;renderNav();
+  document.querySelectorAll('.tab-pane').forEach(function(p){p.className='tab-pane'+(p.dataset.tab===id?' act':'');});
+  if(id==='locs')pane('locs').innerHTML=renderLocs();
+  if(id==='items')pane('items').innerHTML=renderItems();
+  if(id==='moves'){pane('moves').innerHTML=renderMoves();loadMoves();}
+  if(id==='tms'){pane('tms').innerHTML=renderTMs();loadTMs();}
+}
+
+// ── Game picker modal ──
+function openGamePicker(){S.modal='game-picker';renderModal();}
+function closeModal(){S.modal=null;renderModal();}
+function selectGame(id){
+  S.game=id;
+  S.dexPage=0;S.itemPage=0;S.mvPage=0;
+  S.tmLoaded=false;S.tmLoading=false;S.tmList=[];
+  closeModal();
+  // Re-render ALL panes so switching between tabs reflects the new filter
+  if(S.dexView==='list')pane('dex').innerHTML=renderDexList();
+  else pane('dex').innerHTML=renderDexDetail();
+  pane('items').innerHTML=renderItems();
+  pane('moves').innerHTML=renderMoves();
+  if(S.mvView==='list')enrichVisibleMoves();
+  pane('tms').innerHTML=renderTMs();
+  if(S.tab==='tms'&&S.game)loadTMs();
+  if(S.tab==='moves'&&S.mvView==='list')loadMoves();
+  if(S.locView==='regions')pane('locs').innerHTML=renderLocs();
+}
+
+function renderModal(){
+  var mr=document.getElementById('modal-root');
+  if(!S.modal){mr.innerHTML='';return;}
+  if(S.modal==='game-picker'){
+    var rows='<div class="game-row" onclick="selectGame(null)">'+
+      gameBadge(null,42)+
+      '<div class="game-row-name">All Games</div>'+
+      '<div class="game-check'+(S.game===null?' on':'')+'">'+(S.game===null?'<span style="color:white;font-weight:900">✓</span>':'')+'</div></div>';
+    rows+=GAMES.map(function(g){
+      var chk=S.game===g.id;
+      return '<div class="game-row" onclick="selectGame(\''+g.id+'\')">'+
+        '<div class="game-row-ic" style="background:linear-gradient(135deg,'+g.c1+' 50%,'+g.c2+' 50%)">'+g.ic+'</div>'+
+        '<div class="game-row-name">'+g.n+'</div>'+
+        '<div class="game-check'+(chk?' on':'')+'">'+(chk?'<span style="color:white;font-weight:900">✓</span>':'')+'</div></div>';
+    }).join('');
+    mr.innerHTML='<div class="modal-backdrop">'+
+      '<div class="modal-head">'+
+        '<div style="width:34px"></div>'+
+        '<div class="modal-title">Choose a version</div>'+
+        '<button class="icon-btn" style="background:rgba(255,255,255,0.1);font-size:18px;color:#F0F0F5" onclick="closeModal()">×</button>'+
+      '</div>'+
+      '<div class="modal-body">'+rows+'</div></div>';
+  }
+}
+
+// ── POKÉDEX ──
+function dexFilt(){
+  var l=S.dexList;
+  if(S.game){
+    var g=gameById(S.game);
+    if(g){var hi=GRR[g.gen][1];l=l.filter(function(_,i){return i+1<=hi;});}
+  }
+  if(S.dexQ.trim()){var q=S.dexQ.toLowerCase().trim();l=l.filter(function(p){return p.name.indexOf(q)>=0||String(gid(p.url)).indexOf(q)>=0;});}
+  return l;
+}
+function renderDexListItems(){
+  var filt=dexFilt(),maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);
+  if(S.dexPage>maxPg)S.dexPage=0;
+  var paged=filt.slice(S.dexPage*PER,(S.dexPage+1)*PER);
+  var listHtml=S.dexList.length===0?'<div class="empty">Loading Pokédex…</div>':paged.map(function(p){
+    var id=gid(p.url);
+    return '<div class="list-item" onclick="openDex(\''+p.name+'\',\''+p.url+'\')">'+
+      '<img src="'+spr(id)+'" width="48" height="48" style="image-rendering:pixelated;flex-shrink:0"/>'+
+      '<div style="flex:1"><div class="dex-num">#'+String(id).padStart(4,'0')+'</div>'+
+      '<div class="dex-name">'+cap(p.name)+'</div></div>'+
+      '<span style="color:#3A3A48;font-size:18px">›</span></div>';
+  }).join('');
+  return {listHtml:listHtml,filt:filt,maxPg:maxPg};
+}
+function renderDexList(){
+  var r=renderDexListItems();
+  var g=S.game?gameById(S.game):null;
+  return '<div class="screen">'+
+    '<div class="topbar">'+
+      '<div class="topbar-title">Pokédex</div>'+
+      themeBtnHTML()+
+      '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+    '</div>'+
+    '<div class="search-wrap">'+
+      '<input id="dex-search" class="srch" value="'+esc(S.dexQ)+'" placeholder="Search by name or number…" oninput="dexSearch(this.value)"/>'+
+    '</div>'+
+    '<div class="scroll" id="dex-scroll-list">'+r.listHtml+'</div>'+
+    '<div class="pg-row" id="dex-pg-row">'+
+      '<button class="pg-btn"'+(S.dexPage===0?' disabled':'')+' onclick="dexPg(-1)">Prev</button>'+
+      '<span class="pg-info">'+r.filt.length+' · '+(S.dexPage+1)+'/'+(r.maxPg+1)+'</span>'+
+      '<button class="pg-btn"'+(S.dexPage>=r.maxPg?' disabled':'')+' onclick="dexPg(1)">Next</button>'+
+    '</div></div>';
+}
+function updateDexListOnly(){
+  var r=renderDexListItems();
+  var scrollEl=document.getElementById('dex-scroll-list');
+  var pgEl=document.getElementById('dex-pg-row');
+  if(scrollEl)scrollEl.innerHTML=r.listHtml;
+  if(pgEl)pgEl.innerHTML=
+    '<button class="pg-btn"'+(S.dexPage===0?' disabled':'')+' onclick="dexPg(-1)">Prev</button>'+
+    '<span class="pg-info">'+r.filt.length+' · '+(S.dexPage+1)+'/'+(r.maxPg+1)+'</span>'+
+    '<button class="pg-btn"'+(S.dexPage>=r.maxPg?' disabled':'')+' onclick="dexPg(1)">Next</button>';
+}
+function dexSearch(v){S.dexQ=v;S.dexPage=0;updateDexListOnly();}
+function dexPg(d){var f=dexFilt();S.dexPage=Math.max(0,Math.min(Math.max(0,Math.ceil(f.length/PER)-1),S.dexPage+d));updateDexListOnly();}
+
+function renderDexDetail(){
+  if(!S.dexDet&&S.dexLoading){
+    return '<div class="screen"><div class="topbar">'+
+      '<button class="back-btn" onclick="closeDex()">‹</button>'+
+      '<div class="topbar-title">Loading…</div></div><div class="empty">Fetching…</div></div>';
+  }
+  if(!S.dexDet)return '<div class="screen"><div class="empty">No data</div></div>';
+  var d=S.dexDet,sp=S.dexSp;
+  var types=d.types.map(function(t){return t.type.name;});
+  var col=TC[types[0]]||'#888',col2=types[1]?TC[types[1]]:col;
+  var imgSrc=S.dexShiny?artSh(d.id):artN(d.id);
+  var genus='';if(sp&&sp.genera){var gx=sp.genera.filter(function(g){return g.language.name==='en';})[0];if(gx)genus=gx.genus;}
+  var body='';
+  if(S.dexDtab==='info')body=renderDetInfo(d,sp,types);
+  else if(S.dexDtab==='evolutions')body=renderDetEvos();
+  else if(S.dexDtab==='catch')body=renderDetCatch(d,sp);
+  else body=renderDetMoves(d);
+  var shinyStyle='border:1px solid rgba(255,255,255,0.35);border-radius:99px;padding:5px 12px;cursor:pointer;font-size:11px;color:#fff;font-weight:700;background:'+(S.dexShiny?'rgba(255,200,0,0.35)':'rgba(0,0,0,0.35)');
+  return '<div class="screen">'+
+    // Back button stays pinned at top-left — always accessible
+    '<div style="position:absolute;top:10px;left:12px;z-index:10;pointer-events:auto">'+
+      '<button class="back-btn" onclick="closeDex()" style="background:rgba(0,0,0,0.4);color:#fff">‹</button>'+
+    '</div>'+
+    '<div id="det-scroll" style="flex:1;min-height:0;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:56px" onscroll="onDetScroll(this)">'+
+      '<div style="background:linear-gradient(140deg,'+col+','+col2+');padding-top:12px;padding-bottom:50px;text-align:center;position:relative;overflow:hidden">'+
+        '<div style="position:absolute;inset:0;overflow:hidden;opacity:0.12">'+
+          '<div style="position:absolute;right:-20px;bottom:8px;width:140px;height:140px;background:#fff;border-radius:20px;transform:rotate(22deg)"></div>'+
+          '<div style="position:absolute;left:-15px;top:4px;width:90px;height:90px;background:#fff;border-radius:16px;transform:rotate(-14deg)"></div>'+
+        '</div>'+
+        // Normal/Shiny toggle inside the hero — stays next to the Pokemon picture, scrolls with it
+        '<button onclick="toggleShiny()" style="position:absolute;top:12px;right:12px;z-index:3;'+shinyStyle+'">'+(S.dexShiny?'★ Shiny':'Normal')+'</button>'+
+        '<img style="width:150px;height:150px;image-rendering:pixelated;position:relative;z-index:2;filter:drop-shadow(0 10px 22px rgba(0,0,0,0.4))" src="'+imgSrc+'" onerror="this.src=\''+spr(d.id)+'\'" alt=""/>'+
+        '<div class="det-wave"></div>'+
+      '</div>'+
+      '<div style="padding:4px 14px 8px">'+
+        '<div style="font-size:10px;color:#6B6B78;font-family:monospace;margin-bottom:2px">#'+String(d.id).padStart(4,'0')+(genus?' · '+esc(genus):'')+'</div>'+
+        '<div style="font-size:26px;font-weight:900;color:#F0F0F5;letter-spacing:-0.03em;text-transform:capitalize;margin-bottom:6px">'+cap(d.name)+'</div>'+
+        '<div style="display:flex;gap:6px;flex-wrap:wrap">'+types.map(tpill).join('')+'</div>'+
+      '</div>'+
+      '<div style="padding:0 14px 80px">'+body+'</div>'+
+    '</div>'+
+    '<div id="det-tabs" class="det-tabs">'+
+      [['info','ℹ️','Info'],['evolutions','🔄','Evos'],['catch','📍','Catch'],['moves','⚡','Moves']].map(function(t){
+        return '<button class="dtb'+(S.dexDtab===t[0]?' act':'')+'" onclick="setDetTab(\''+t[0]+'\')">'+
+          '<span class="dtb-ic">'+t[1]+'</span>'+t[2]+'</button>';
+      }).join('')+'</div></div>';
+}
+
+// Hide sub-tabs on scroll down, show on scroll up
+function onDetScroll(el){
+  var y=el.scrollTop;
+  var diff=y-S.dexLastScroll;
+  var tabs=document.getElementById('det-tabs');
+  if(!tabs)return;
+  if(diff>6 && y>100){
+    // scrolling down
+    if(!S.dexTabsHidden){S.dexTabsHidden=true;tabs.classList.add('hidden');}
+  } else if(diff<-6 || y<50){
+    if(S.dexTabsHidden){S.dexTabsHidden=false;tabs.classList.remove('hidden');}
+  }
+  S.dexLastScroll=y;
+}
+
+function renderDetInfo(d,sp,types){
+  var mu=calcMu(types);
+  var wk=Object.keys(mu).filter(function(t){return mu[t]>1;}).sort(function(a,b){return mu[b]-mu[a];});
+  var rs=Object.keys(mu).filter(function(t){return mu[t]>0&&mu[t]<1;});
+  var im=Object.keys(mu).filter(function(t){return mu[t]===0;});
+  var flav='';
+  if(sp&&sp.flavor_text_entries){var fe=sp.flavor_text_entries.filter(function(e){return e.language.name==='en';});if(fe.length)flav=(fe[fe.length-1].flavor_text||'').replace(/[\f\n]/g,' ');}
+  var tot=d.stats.reduce(function(a,s){return a+s.base_stat;},0);
+  var html='';
+  if(flav)html+='<p style="font-size:13px;color:#9B9BA8;line-height:1.65;margin-bottom:11px;background:#141420;border-radius:13px;padding:11px 13px;font-style:italic;border:0.5px solid rgba(255,255,255,0.05)">'+esc(flav)+'</p>';
+  html+=card('Stats',d.stats.map(function(s){return sbar(s.stat.name,s.base_stat);}).join('')+
+    '<div style="display:flex;justify-content:flex-end;border-top:0.5px solid rgba(255,255,255,0.06);padding-top:6px;margin-top:3px"><span style="font-size:11px;color:#6B6B78;font-weight:700">TOTAL · '+tot+'</span></div>');
+  var matchHtml='';
+  if(im.length)matchHtml+='<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:800;color:#6B6B78;letter-spacing:.05em;margin-bottom:6px">IMMUNE (x0)</div><div style="display:flex;flex-wrap:wrap;gap:8px">'+im.map(function(t){return tcir(t,0);}).join('')+'</div></div>';
+  if(wk.length)matchHtml+='<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:800;color:#CE4265;letter-spacing:.05em;margin-bottom:6px">WEAK</div><div style="display:flex;flex-wrap:wrap;gap:8px">'+wk.map(function(t){return tcir(t,mu[t]);}).join('')+'</div></div>';
+  if(rs.length)matchHtml+='<div><div style="font-size:10px;font-weight:800;color:#5DAA56;letter-spacing:.05em;margin-bottom:6px">RESISTS</div><div style="display:flex;flex-wrap:wrap;gap:8px">'+rs.map(function(t){return tcir(t,mu[t]);}).join('')+'</div></div>';
+  if(matchHtml)html+=card('Type Matchups',matchHtml);
+  html+=card('Abilities','<div style="display:flex;flex-direction:column;gap:9px">'+d.abilities.map(function(a){
+    return '<div><div style="font-size:14px;font-weight:700;color:'+(a.is_hidden?'#FF9F0A':'#F0F0F5')+';text-transform:capitalize">'+cap(a.ability.name)+'</div>'+(a.is_hidden?'<div style="font-size:10px;color:#6B6B78;margin-top:1px">Hidden Ability</div>':'')+'</div>';
+  }).join('')+'</div>');
+  html+=card('Characteristics','<div class="info-grid">'+[
+    iitem('Height',(d.height/10).toFixed(1)+' m'),iitem('Weight',(d.weight/10).toFixed(1)+' kg'),
+    iitem('Base XP',d.base_experience||'?'),iitem('Catch Rate',sp&&sp.capture_rate!==undefined?sp.capture_rate:'?'),
+    iitem('Generation',cap(sp&&sp.generation?sp.generation.name:'')),iitem('Legendary',sp&&sp.is_legendary?'Yes':'No')
+  ].join('')+'</div>');
+  return html;
+}
+function describeEvo(det){
+  // Returns {label, info} describing evolution requirements from evolution_details entry
+  if(!det)return{label:'Unknown',info:''};
+  var trigger=det.trigger?det.trigger.name:'';
+  // Stone/item evolution (use-item)
+  if(det.item)return{label:cap(det.item.name),info:''};
+  // Trade
+  if(trigger==='trade'){
+    if(det.held_item)return{label:'Trade holding '+cap(det.held_item.name),info:''};
+    if(det.trade_species)return{label:'Trade for '+cap(det.trade_species.name),info:''};
+    return{label:'Trade',info:'Evolves when traded'};
+  }
+  // Shed (Shedinja)
+  if(trigger==='shed')return{label:'Shed',info:'Shedinja appears in an empty party slot'};
+  // Spin (Alcremie)
+  if(trigger==='spin')return{label:'Spin',info:'Level up while spinning with a Sweet'};
+  // Level up
+  if(trigger==='level-up'||!trigger){
+    if(det.min_level)return{label:'Level '+det.min_level,info:''};
+    if(det.min_happiness){
+      var t=det.time_of_day?' ('+det.time_of_day+')':'';
+      return{label:'Friendship'+t,info:'Level up with high friendship'};
+    }
+    if(det.min_affection)return{label:'High Affection',info:'Level up with high affection'};
+    if(det.min_beauty)return{label:'High Beauty',info:'Level up with high beauty stat'};
+    if(det.known_move)return{label:'Knows '+cap(det.known_move.name),info:'Level up knowing this move'};
+    if(det.known_move_type)return{label:cap(det.known_move_type.name)+'-type move',info:'Level up knowing a move of this type'};
+    if(det.held_item){
+      var ti=det.time_of_day?' ('+det.time_of_day+')':'';
+      return{label:'Hold '+cap(det.held_item.name)+ti,info:'Level up holding this item'};
+    }
+    if(det.location)return{label:'At '+cap(det.location.name),info:'Level up at this location'};
+    if(det.needs_overworld_rain)return{label:'While Raining',info:'Level up in the rain'};
+    if(det.time_of_day)return{label:'Level up ('+det.time_of_day+')',info:''};
+    if(det.relative_physical_stats!==null&&det.relative_physical_stats!==undefined){
+      var r=det.relative_physical_stats;
+      return{label:r===1?'Atk > Def':r===-1?'Atk < Def':'Atk = Def',info:'Level up with this stat balance'};
+    }
+    if(det.gender){var g=det.gender===1?'Female':'Male';return{label:g+' only',info:'Only this gender evolves'};}
+    if(det.party_species)return{label:'With '+cap(det.party_species.name)+' in party',info:''};
+    if(det.party_type)return{label:cap(det.party_type.name)+' Pokémon in party',info:''};
+    return{label:'Special',info:'Level up under specific conditions'};
+  }
+  // Use-item (fallback)
+  if(trigger==='use-item'&&det.item)return{label:cap(det.item.name),info:''};
+  // Other triggers
+  return{label:cap(trigger||'Special'),info:''};
+}
+function getEvoTransitions(chain){
+  var out=[];
+  function walk(node){
+    (node.evolves_to||[]).forEach(function(next){
+      var det=(next.evolution_details||[])[0]||null;
+      out.push({
+        from:{name:node.species.name,id:gid(node.species.url)},
+        to:{name:next.species.name,id:gid(next.species.url)},
+        det:det
+      });
+      walk(next);
+    });
+  }
+  walk(chain);
+  return out;
+}
+function renderDetEvos(){
+  if(!S.dexEv)return '<div style="text-align:center;padding:20px;color:var(--tx3)">Loading…</div>';
+  var transitions=getEvoTransitions(S.dexEv.chain);
+  if(transitions.length===0){
+    return card('Evolution','<div style="text-align:center;color:var(--tx3);padding:8px">Does not evolve.</div>');
+  }
+  return transitions.map(function(t){
+    var desc=describeEvo(t.det);
+    return '<div style="margin-bottom:16px">'+
+      '<div style="font-size:19px;font-weight:800;color:var(--tx);letter-spacing:-0.01em;margin-bottom:8px;padding:0 2px">'+esc(desc.label)+'</div>'+
+      '<div style="display:flex;align-items:center;background:var(--card);border-radius:18px;padding:14px 8px;border:0.5px solid var(--border)">'+
+        '<div onclick="openDexById('+t.from.id+',\''+t.from.name+'\')" style="flex:1;text-align:center;cursor:pointer;padding:4px;border-radius:14px">'+
+          '<img src="'+artN(t.from.id)+'" style="width:96px;height:96px;image-rendering:pixelated;display:block;margin:0 auto" onerror="this.src=\''+spr(t.from.id)+'\'" alt=""/>'+
+        '</div>'+
+        '<div style="color:var(--tx3);font-size:22px;padding:0 6px;flex-shrink:0">→</div>'+
+        '<div onclick="openDexById('+t.to.id+',\''+t.to.name+'\')" style="flex:1;text-align:center;cursor:pointer;padding:4px;border-radius:14px">'+
+          '<img src="'+artN(t.to.id)+'" style="width:96px;height:96px;image-rendering:pixelated;display:block;margin:0 auto" onerror="this.src=\''+spr(t.to.id)+'\'" alt=""/>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+function renderDetCatch(d,sp){
+  var encs=S.dexEncs;
+  var html=card('Catch Info','<div class="info-grid">'+[
+    iitem('Catch Rate',sp&&sp.capture_rate!==undefined?sp.capture_rate:'?'),
+    iitem('Happiness',sp&&sp.base_happiness!==undefined?sp.base_happiness:'?'),
+    iitem('Growth Rate',cap(sp&&sp.growth_rate?sp.growth_rate.name:'')),
+    iitem('Egg Groups',sp&&sp.egg_groups?sp.egg_groups.map(function(e){return cap(e.name);}).join(', '):'?')
+  ].join('')+'</div>');
+  if(encs===null)return html+'<div style="text-align:center;padding:16px;color:#6B6B78">Loading encounters…</div>';
+  if(encs.length===0)return html+card('Wild Encounters','<div style="color:#6B6B78;text-align:center">Not found in the wild.</div>');
+  return html+card('Wild Encounters',encs.slice(0,20).map(function(loc,i){
+    return '<div style="padding:7px 0;border-bottom:'+(i<encs.length-1?'0.5px solid rgba(255,255,255,0.05)':'none')+'">'+
+      '<div style="font-size:13px;font-weight:600;color:#F0F0F5;text-transform:capitalize">'+cap(loc.location_area.name)+'</div>'+
+      '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:3px">'+loc.version_details.map(function(v){
+        return '<span style="font-size:9px;padding:2px 6px;background:#1A1A24;border-radius:6px;color:#9B9BA8;font-weight:600;text-transform:capitalize">'+cap(v.version.name)+'</span>';
+      }).join('')+'</div></div>';
+  }).join(''));
+}
+function renderDetMoves(d){
+  var mode=S.dexMvMode;
+  // Filter by game if selected
+  var vgFilter=S.game;
+  var lvM=(d.moves||[]).map(function(m){
+    var vds=m.version_group_details||[];
+    var v;
+    if(vgFilter){v=vds.filter(function(x){return x.move_learn_method.name==='level-up'&&x.version_group.name===vgFilter;})[0];}
+    else{v=vds.filter(function(x){return x.move_learn_method.name==='level-up';})[0];}
+    return v?{name:m.move.name,lv:v.level_learned_at}:null;
+  }).filter(Boolean).sort(function(a,b){return a.lv-b.lv;});
+  var tmM=(d.moves||[]).map(function(m){
+    var vds=m.version_group_details||[];
+    var v;
+    if(vgFilter){v=vds.filter(function(x){return x.move_learn_method.name==='machine'&&x.version_group.name===vgFilter;})[0];}
+    else{v=vds.filter(function(x){return x.move_learn_method.name==='machine';})[0];}
+    return v?{name:m.move.name}:null;
+  }).filter(Boolean);
+  var moves=mode==='level'?lvM:tmM;
+  return '<div class="seg">'+
+    '<button class="seg-btn'+(mode==='level'?' act':'')+'" onclick="setMvMode(\'level\')">Level Up</button>'+
+    '<button class="seg-btn'+(mode==='tm'?' act':'')+'" onclick="setMvMode(\'tm\')">TM / HM</button></div>'+
+    '<div style="background:#141420;border-radius:13px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.05)">'+
+    (moves.length===0?'<div style="padding:20px;text-align:center;color:#6B6B78">No moves found.</div>':
+     moves.slice(0,80).map(function(m,i){
+       return '<div onclick="openMoveByName(\''+m.name+'\')" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:'+(i<moves.length-1?'0.5px solid rgba(255,255,255,0.04)':'none')+';cursor:pointer">'+
+         '<span style="font-size:11px;font-weight:700;color:#5C9EFF;width:48px;flex-shrink:0">'+(mode==='level'?(m.lv===0?'Evo.':'Lv '+m.lv):'TM')+'</span>'+
+         '<span style="flex:1;font-size:14px;font-weight:500;color:#F0F0F5;text-transform:capitalize">'+cap(m.name)+'</span>'+
+         '<span style="color:#3A3A48">›</span></div>';
+     }).join(''))+'</div>';
+}
+
+function openDex(name,url){
+  S.dexSelName=name;S.dexDet=null;S.dexSp=null;S.dexEv=null;S.dexEncs=null;S.dexLoading=true;S.dexDtab='info';S.dexView='detail';S.dexTabsHidden=false;S.dexLastScroll=0;
+  pane('dex').innerHTML=renderDexDetail();
+  af(url).then(function(d){S.dexDet=d;S.dexLoading=false;pane('dex').innerHTML=renderDexDetail();return af(d.species.url);})
+  .then(function(sp){S.dexSp=sp;pane('dex').innerHTML=renderDexDetail();return af(sp.evolution_chain.url);})
+  .then(function(ev){S.dexEv=ev;if(S.dexDtab==='evolutions')pane('dex').innerHTML=renderDexDetail();return af(API+'/pokemon/'+S.dexDet.id+'/encounters');})
+  .then(function(encs){S.dexEncs=encs;if(S.dexDtab==='catch')pane('dex').innerHTML=renderDexDetail();})
+  .catch(function(e){console.error(e);S.dexLoading=false;});
+}
+function openDexById(id,name){openDex(name,API+'/pokemon/'+id);}
+function closeDex(){
+  S.dexView='list';S.dexSelName=null;
+  if(S.tab!=='dex')goTab('dex');
+  else pane('dex').innerHTML=renderDexList();
+}
+function toggleShiny(){S.dexShiny=!S.dexShiny;pane('dex').innerHTML=renderDexDetail();}
+function setDetTab(t){S.dexDtab=t;S.dexTabsHidden=false;S.dexLastScroll=0;pane('dex').innerHTML=renderDexDetail();}
+function setMvMode(m){S.dexMvMode=m;pane('dex').innerHTML=renderDexDetail();}
+
+// ── TYPES ──
+function renderTypes(){
+  var mode=S.typeMode;
+  function cs(v){if(v===0)return'background:#2A0D1A;color:#FF6B9D';if(v<1)return'background:#2A1F0D;color:#FFA040';if(v===1)return'background:#1A1A24;color:#5A5A68';if(v===2)return'background:#0D2A0D;color:#6AC060';return'background:#1F3E1F;color:#98E090';}
+  function cl(v){return v===1?'':v===0?'0':v<1?'1/2':v===4?'4':'2';}
+  var chdr='<tr><td style="width:38px"></td>'+TYPES.map(function(t){return '<td style="background:'+TC[t]+';width:22px;border-radius:4px;text-align:center;vertical-align:bottom;font-size:6px;font-weight:800;color:#fff;padding:2px 1px 3px;word-break:break-word;line-height:1.1;height:26px">'+t.slice(0,3).toUpperCase()+'</td>';}).join('')+'</tr>';
+  var rows=TYPES.map(function(atk){
+    return '<tr><td style="text-align:right;padding-right:5px;vertical-align:middle"><div style="background:'+TC[atk]+';color:#fff;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;width:30px;height:17px;font-size:7px;font-weight:800">'+atk.slice(0,3).toUpperCase()+'</div></td>'+
+      TYPES.map(function(def){var v=mode==='atk'?ge(atk,def):ge(def,atk);return '<td style="'+cs(v)+';width:22px;height:22px;border-radius:4px;text-align:center;font-size:10px;font-weight:800">'+cl(v)+'</td>';}).join('')+'</tr>';
+  }).join('');
+  return '<div class="screen">'+
+    '<div class="topbar"><div class="topbar-title">Type Chart</div>'+
+      '<div style="display:flex;background:var(--card2);border-radius:10px;padding:3px;gap:2px">'+
+        ['atk','def'].map(function(m){return '<button onclick="setTypeMode(\''+m+'\')" style="padding:5px 12px;border-radius:7px;border:none;cursor:pointer;font-size:12px;font-weight:700;background:'+(mode===m?'var(--active)':'transparent')+';color:'+(mode===m?'var(--tx)':'var(--tx3)')+'">'+(m==='atk'?'Attacking':'Defending')+'</button>';}).join('')+
+      '</div>'+themeBtnHTML()+'</div>'+
+    '<div style="flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px">'+
+      '<table style="border-collapse:separate;border-spacing:2px"><thead>'+chdr+'</thead><tbody>'+rows+'</tbody></table>'+
+    '</div></div>';
+}
+function setTypeMode(m){S.typeMode=m;pane('types').innerHTML=renderTypes();}
+
+// ── LOCATIONS ──
+function renderLocs(){
+  if(S.locView==='encs')return renderLocEncs();
+  if(S.locView==='locs')return renderLocList();
+  var items=S.locRegions.length===0?'<div class="empty">Loading regions…</div>':
+    S.locRegions.map(function(r){var col=RCOL[r.name]||'#888';
+      return '<div class="list-item" onclick="selReg(\''+r.name+'\',\''+r.url+'\')">'+
+        '<div style="width:42px;height:42px;border-radius:12px;background:'+col+';display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🗾</div>'+
+        '<span style="font-size:16px;font-weight:700;flex:1;text-transform:capitalize">'+cap(r.name)+'</span>'+
+        '<span style="color:#3A3A48;font-size:18px">›</span></div>';
+    }).join('');
+  return '<div class="screen"><div class="topbar"><div class="topbar-title">Locations</div>'+themeBtnHTML()+'</div><div class="scroll">'+items+'</div></div>';
+}
+function renderLocList(){
+  var items=S.locLocs.length===0?'<div class="empty">Loading…</div>':
+    S.locLocs.map(function(l){return '<div class="list-item" onclick="selLoc(\''+l.name+'\',\''+l.url+'\')"><span style="flex:1;font-size:14px;font-weight:600;text-transform:capitalize">'+cap(l.name)+'</span><span style="color:#3A3A48;font-size:18px">›</span></div>';}).join('');
+  return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="locBack(\'regions\')">‹</button><div class="topbar-title">'+cap(S.locReg?S.locReg.name:'')+'</div></div><div class="scroll">'+items+'</div></div>';
+}
+function renderLocEncs(){
+  var encs=S.locEncs;
+  var body=S.locLoading?'<div class="empty">Loading…</div>':
+    (!encs||encs.length===0)?'<div class="empty">No encounters here.</div>':
+    encs.map(function(e,i){var id=gid(e.pokemon.url);
+      return '<div onclick="openDexById('+id+',\''+e.pokemon.name+'\')" style="display:flex;align-items:center;gap:11px;padding:9px 14px;border-bottom:0.5px solid rgba(255,255,255,0.04);background:#141420;cursor:pointer">'+
+        '<img src="'+spr(id)+'" width="44" height="44" style="image-rendering:pixelated;flex-shrink:0"/>'+
+        '<div><div style="font-size:14px;font-weight:600;color:#F0F0F5;text-transform:capitalize">'+cap(e.pokemon.name)+'</div>'+
+        '<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:3px">'+e.version_details.slice(0,3).map(function(v){
+          var lv=v.encounter_details&&v.encounter_details[0]?' Lv'+v.encounter_details[0].min_level+'-'+v.encounter_details[0].max_level:'';
+          return '<span style="font-size:9px;padding:2px 6px;background:#1A1A24;border-radius:6px;color:#9B9BA8;font-weight:600;text-transform:capitalize">'+cap(v.version.name)+lv+'</span>';
+        }).join('')+'</div></div></div>';
+    }).join('');
+  return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="locBack(\'locs\')">‹</button><div class="topbar-title" style="font-size:14px">'+cap(S.locLoc?S.locLoc.name:'')+'</div></div><div class="scroll">'+body+'</div></div>';
+}
+function selReg(name,url){S.locReg={name:name,url:url};S.locLocs=[];S.locView='locs';pane('locs').innerHTML=renderLocs();af(url).then(function(d){S.locLocs=d.locations||[];pane('locs').innerHTML=renderLocs();});}
+function selLoc(name,url){
+  S.locLoc={name:name,url:url};S.locEncs=null;S.locLoading=true;S.locView='encs';pane('locs').innerHTML=renderLocs();
+  af(url).then(function(d){var ar=d.areas||[];if(!ar.length){S.locEncs=[];S.locLoading=false;pane('locs').innerHTML=renderLocs();return;}return af(ar[0].url);})
+  .then(function(ad){if(!ad)return;var es=ad.pokemon_encounters||[];
+    if(S.game){es=es.filter(function(e){return (e.version_details||[]).some(function(v){return v.version&&v.version.name;});});}
+    S.locEncs=es;S.locLoading=false;pane('locs').innerHTML=renderLocs();})
+  .catch(function(){S.locEncs=[];S.locLoading=false;pane('locs').innerHTML=renderLocs();});
+}
+function locBack(v){S.locView=v;pane('locs').innerHTML=renderLocs();}
+
+// ── MOVES ──
+function moveRowHTML(m){
+  var c=mvDetCache[m.name];
+  var power=c?(c.power!=null?String(c.power):'-'):'-';
+  var acc=c?(c.accuracy!=null?String(c.accuracy):'-'):'-';
+  var desc=c?esc(c.short||''):'';
+  var typeHTML=c?tcIcon(c.type):'<div class="mv-ph"></div>';
+  var dcHTML=c?dcIcon(c.dmgClass):'<div class="mv-ph"></div>';
+  return '<div class="mv-row" id="mvr-'+m.name+'" onclick="openMoveByName(\''+m.name+'\')">'+
+    '<div class="mv-row-main">'+
+      '<div class="mv-row-name">'+cap(m.name)+'</div>'+
+      (desc?'<div class="mv-row-desc">'+desc+'</div>':'<div class="mv-row-desc">&nbsp;</div>')+
+    '</div>'+
+    '<div class="mv-stat-pill">'+
+      '<div class="mv-stat-cell">'+power+'</div>'+
+      '<div class="mv-stat-cell">'+acc+'</div>'+
+    '</div>'+
+    typeHTML+dcHTML+
+  '</div>';
+}
+function enrichVisibleMoves(){
+  // Fetch move details for visible page so rows populate with stats/type/cat
+  var filt=S.mvList;
+  if(S.mvQ.trim()){var q=S.mvQ.toLowerCase();filt=filt.filter(function(m){return m.name.indexOf(q)>=0;});}
+  var paged=filt.slice(S.mvPage*PER,(S.mvPage+1)*PER);
+  paged.forEach(function(m){
+    if(mvDetCache[m.name])return;
+    af(m.url).then(function(d){
+      var short='';
+      if(d.effect_entries){
+        var ee=d.effect_entries.filter(function(e){return e.language.name==='en';})[0];
+        if(ee)short=(ee.short_effect||ee.effect||'').replace(/\$effect_chance/g,d.effect_chance||'');
+      }
+      if(!short&&d.flavor_text_entries){
+        var fe=d.flavor_text_entries.filter(function(e){return e.language.name==='en';});
+        if(fe.length)short=(fe[fe.length-1].flavor_text||'').replace(/[\f\n]/g,' ');
+      }
+      mvDetCache[m.name]={
+        power:d.power,accuracy:d.accuracy,type:d.type.name,
+        dmgClass:d.damage_class?d.damage_class.name:'status',
+        short:short
+      };
+      var row=document.getElementById('mvr-'+m.name);
+      if(row)row.outerHTML=moveRowHTML(m);
+    }).catch(function(){});
+  });
+}
+function renderMoves(){
+  if(S.mvView==='detail')return renderMoveDetail();
+  if(S.mvView==='learners')return renderMoveLearners();
+  var filt=S.mvList;
+  if(S.mvQ.trim()){var q=S.mvQ.toLowerCase();filt=filt.filter(function(m){return m.name.indexOf(q)>=0;});}
+  var maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);
+  if(S.mvPage>maxPg)S.mvPage=0;
+  var paged=filt.slice(S.mvPage*PER,(S.mvPage+1)*PER);
+  var listHtml=S.mvList.length===0?'<div class="empty">Loading moves…</div>':paged.map(moveRowHTML).join('');
+  var g=S.game?gameById(S.game):null;
+  return '<div class="screen">'+
+    '<div class="topbar">'+
+      '<div class="topbar-title">Moves</div>'+
+      themeBtnHTML()+
+      '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+    '</div>'+
+    '<div class="search-wrap"><input id="mv-search" class="srch" value="'+esc(S.mvQ)+'" placeholder="Search moves…" oninput="mvSearch(this.value)"/></div>'+
+    '<div class="scroll" id="mv-scroll">'+listHtml+'</div>'+
+    '<div class="pg-row" id="mv-pg">'+
+      '<button class="pg-btn"'+(S.mvPage===0?' disabled':'')+' onclick="mvPg(-1)">Prev</button>'+
+      '<span class="pg-info">'+filt.length+' · '+(S.mvPage+1)+'/'+(maxPg+1)+'</span>'+
+      '<button class="pg-btn"'+(S.mvPage>=maxPg?' disabled':'')+' onclick="mvPg(1)">Next</button>'+
+    '</div></div>';
+}
+function mvSearch(v){
+  S.mvQ=v;S.mvPage=0;
+  var filt=S.mvList;if(v.trim()){var q=v.toLowerCase();filt=filt.filter(function(m){return m.name.indexOf(q)>=0;});}
+  var maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);
+  var paged=filt.slice(0,PER);
+  var sc=document.getElementById('mv-scroll');
+  if(sc)sc.innerHTML=paged.map(moveRowHTML).join('');
+  var pg=document.getElementById('mv-pg');
+  if(pg)pg.innerHTML='<button class="pg-btn" disabled>Prev</button>'+
+    '<span class="pg-info">'+filt.length+' · 1/'+(maxPg+1)+'</span>'+
+    '<button class="pg-btn"'+(maxPg===0?' disabled':'')+' onclick="mvPg(1)">Next</button>';
+  enrichVisibleMoves();
+}
+function mvPg(d){
+  var filt=S.mvList;if(S.mvQ.trim()){var q=S.mvQ.toLowerCase();filt=filt.filter(function(m){return m.name.indexOf(q)>=0;});}
+  S.mvPage=Math.max(0,Math.min(Math.max(0,Math.ceil(filt.length/PER)-1),S.mvPage+d));
+  pane('moves').innerHTML=renderMoves();
+  enrichVisibleMoves();
+}
+function loadMoves(){
+  if(S.mvList.length){enrichVisibleMoves();return;}
+  af(API+'/move?limit=1000&offset=0').then(function(d){S.mvList=d.results||[];pane('moves').innerHTML=renderMoves();enrichVisibleMoves();});
+}
+function openMoveByName(name){
+  S.mvSelName=name;S.mvDet=null;S.mvLearners=null;S.mvView='detail';
+  pane(S.tab==='moves'?'moves':(S.tab==='tms'?'tms':'moves')).innerHTML=
+    S.tab==='tms'?renderTMs():renderMoves();
+  // If we came from a pokemon detail, we need a different flow — for simplicity just navigate to Moves tab
+  if(S.tab!=='moves'&&S.tab!=='tms'){
+    S.tab='moves';renderNav();
+    document.querySelectorAll('.tab-pane').forEach(function(p){p.className='tab-pane'+(p.dataset.tab==='moves'?' act':'');});
+    pane('moves').innerHTML=renderMoves();
+  }
+  af(API+'/move/'+name).then(function(d){
+    S.mvDet=d;
+    if(S.mvView==='detail'){
+      (S.tab==='moves'?pane('moves'):pane('tms')).innerHTML=S.tab==='tms'?renderTMs():renderMoves();
+    }
+  });
+}
+function renderMoveDetail(){
+  var d=S.mvDet;
+  if(!d)return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="closeMove()">‹</button><div class="topbar-title">'+esc(cap(S.mvSelName||''))+'</div></div><div class="empty">Loading…</div></div>';
+  var t=d.type.name;
+  var flav='';
+  if(d.flavor_text_entries){var fe=d.flavor_text_entries.filter(function(e){return e.language.name==='en';});if(fe.length)flav=(fe[fe.length-1].flavor_text||'').replace(/[\f\n]/g,' ');}
+  var eff='';
+  if(d.effect_entries){var ee=d.effect_entries.filter(function(e){return e.language.name==='en';})[0];if(ee)eff=(ee.short_effect||ee.effect||'').replace(/\$effect_chance/g,d.effect_chance||'');}
+  return '<div class="screen">'+
+    '<div class="topbar"><button class="back-btn" onclick="closeMove()">‹</button><div class="topbar-title">'+cap(d.name)+'</div></div>'+
+    '<div class="scroll" style="padding:14px">'+
+      '<div style="background:linear-gradient(135deg,'+TC[t]+','+TC[t]+'80);border-radius:18px;padding:18px 16px;margin-bottom:14px;position:relative;overflow:hidden">'+
+        '<div style="font-size:26px;font-weight:900;color:#fff;text-transform:capitalize;margin-bottom:8px">'+cap(d.name)+'</div>'+
+        '<div style="display:flex;gap:8px;flex-wrap:wrap">'+tpill(t)+
+          '<span class="tpill" style="background:rgba(0,0,0,0.3)">'+cap(d.damage_class?d.damage_class.name:'status')+'</span></div>'+
+      '</div>'+
+      (flav?'<p style="font-size:13px;color:#9B9BA8;line-height:1.65;margin-bottom:11px;background:#141420;border-radius:13px;padding:11px 13px;font-style:italic;border:0.5px solid rgba(255,255,255,0.05)">'+esc(flav)+'</p>':'')+
+      (eff?card('Effect','<p style="font-size:13px;color:#C7C7D0;line-height:1.7">'+esc(eff)+'</p>'):'')+
+      card('Stats','<div class="info-grid">'+[
+        iitem('Power',d.power||'—'),
+        iitem('Accuracy',d.accuracy?d.accuracy+'%':'—'),
+        iitem('PP',d.pp||'—'),
+        iitem('Priority',d.priority),
+        iitem('Type',cap(t)),
+        iitem('Category',cap(d.damage_class?d.damage_class.name:'status'))
+      ].join('')+'</div>')+
+      '<button onclick="showMoveLearners()" style="width:100%;padding:14px;background:linear-gradient(135deg,'+TC[t]+','+TC[t]+'AA);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.02em;box-shadow:0 4px 14px '+TC[t]+'55">View Learners</button>'+
+    '</div></div>';
+}
+function showMoveLearners(){
+  S.mvView='learners';S.mvLearners=null;S.mvLoadingLearners=true;
+  (S.tab==='tms'?pane('tms'):pane('moves')).innerHTML=S.tab==='tms'?renderTMs():renderMoves();
+  loadMoveLearners();
+}
+function loadMoveLearners(){
+  var d=S.mvDet;if(!d)return;
+  // Learners come from PokéAPI move.learned_by_pokemon
+  // Filter by version-group if S.game is set (check if any of their moves in this move's data match)
+  var learners=(d.learned_by_pokemon||[]).map(function(p){return {name:p.name,id:gid(p.url)};});
+  // If game is filtered, we need to check pokemon move data — too expensive to do for all ~500 learners.
+  // Instead: filter by generation of the game (gen >= game.gen and pokemon exists by that gen).
+  if(S.game){
+    var g=gameById(S.game);
+    if(g){var hi=GRR[g.gen][1];learners=learners.filter(function(p){return p.id<=hi;});}
+  }
+  learners.sort(function(a,b){return a.id-b.id;});
+  S.mvLearners=learners;S.mvLoadingLearners=false;
+  (S.tab==='tms'?pane('tms'):pane('moves')).innerHTML=S.tab==='tms'?renderTMs():renderMoves();
+}
+function renderMoveLearners(){
+  var d=S.mvDet;
+  var header=d?cap(d.name):'Move';
+  var body=S.mvLoadingLearners?'<div class="empty">Loading learners…</div>':
+    (!S.mvLearners||S.mvLearners.length===0)?'<div class="empty">No Pokémon learn this move.</div>':
+    '<div class="pk-grid">'+S.mvLearners.map(function(p){
+      return '<div class="pk-cell" onclick="openDexById('+p.id+',\''+p.name+'\')">'+
+        '<img src="'+spr(p.id)+'" onerror="this.style.visibility=\'hidden\'"/>'+
+        '<div class="pk-cell-num">#'+String(p.id).padStart(4,'0')+'</div></div>';
+    }).join('')+'</div>';
+  return '<div class="screen">'+
+    '<div class="topbar"><button class="back-btn" onclick="S.mvView=\'detail\';(S.tab===\'tms\'?pane(\'tms\'):pane(\'moves\')).innerHTML=S.tab===\'tms\'?renderTMs():renderMoves();">‹</button><div class="topbar-title">'+header+'</div></div>'+
+    '<div style="padding:16px 14px 8px">'+
+      '<div style="font-size:32px;font-weight:900;color:#F0F0F5;letter-spacing:-0.04em">Learners</div>'+
+      (S.mvLearners?'<div style="font-size:12px;color:#6B6B78;margin-top:2px">'+S.mvLearners.length+' Pokémon can learn this move</div>':'')+
+    '</div>'+
+    '<div class="scroll" style="padding:0 10px 20px">'+body+'</div></div>';
+}
+function closeMove(){S.mvView='list';S.mvSelName=null;S.mvDet=null;
+  if(S.tab==='tms'){S.tmView='list';pane('tms').innerHTML=renderTMs();}
+  else pane('moves').innerHTML=renderMoves();
+}
+
+// ── TMs / HMs ──
+function loadTMs(){
+  if(!S.game)return; // Require a game
+  if(S.tmLoaded||S.tmLoading)return;
+  S.tmLoading=true;
+  var g=gameById(S.game);
+  if(!g){S.tmLoading=false;return;}
+
+  af(API+'/item-category/37').then(function(d){
+    var itemRefs=d.items||[];
+    // Fetch all machine items in parallel (item-category/37 = all-machines, ~200 items)
+    return Promise.all(itemRefs.map(function(ref){
+      return af(ref.url).then(function(d){return d;},function(){return null;});
+    }));
+  }).then(function(fulls){
+    var tms=[];
+    fulls.forEach(function(it){
+      if(!it||!it.machines)return;
+      var mach=it.machines.filter(function(m){return m.version_group.name===g.id;})[0];
+      if(!mach)return;
+      tms.push({
+        itemName:it.name,
+        sprite:it.sprites&&it.sprites.default,
+        machineUrl:mach.machine.url
+      });
+    });
+    // Fetch machine details in parallel for move name
+    return Promise.all(tms.map(function(t){
+      return af(t.machineUrl).then(function(m){
+        if(m&&m.move){t.moveName=m.move.name;t.moveUrl=m.move.url;}
+        return t;
+      },function(){return t;});
+    }));
+  }).then(function(tms){
+    // Keep only successfully resolved TMs
+    tms=tms.filter(function(t){return t.moveName;});
+    tms.sort(function(a,b){return a.itemName.localeCompare(b.itemName,undefined,{numeric:true});});
+    S.tmList=tms;
+    S.tmLoaded=true;S.tmLoading=false;
+    if(S.tab==='tms'&&S.tmView==='list')pane('tms').innerHTML=renderTMs();
+    enrichVisibleTMs();
+  }).catch(function(e){
+    console.error('TM load error:',e);
+    S.tmList=[];S.tmLoaded=true;S.tmLoading=false;
+    if(S.tab==='tms')pane('tms').innerHTML=renderTMs();
+  });
+}
+function renderTMs(){
+  if(S.tmView==='detail')return renderTMDetail();
+  if(S.tmView==='learners')return renderMoveLearners();
+
+  // Require game selection
+  if(!S.game){
+    return '<div class="screen">'+
+      '<div class="topbar">'+
+        '<div class="topbar-title">TM &amp; HM</div>'+
+        themeBtnHTML()+
+        '<div onclick="openGamePicker()">'+gameBadge(null,34)+'</div>'+
+      '</div>'+
+      '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;gap:12px">'+
+        '<div style="font-size:54px">💿</div>'+
+        '<div style="font-size:20px;font-weight:900;color:var(--tx)">Select a Game</div>'+
+        '<div style="font-size:13px;color:var(--tx3);line-height:1.55;max-width:280px">TM &amp; HM lists are different for each game. Choose a game version to see its machines.</div>'+
+        '<button onclick="openGamePicker()" style="margin-top:10px;padding:13px 26px;background:#3A8AD6;border:none;border-radius:14px;color:#fff;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(58,138,214,0.45)">Choose Game</button>'+
+      '</div></div>';
+  }
+
+  var g=gameById(S.game);
+
+  // Loading state
+  if(S.tmLoading||!S.tmLoaded){
+    return '<div class="screen">'+
+      '<div class="topbar">'+
+        '<div class="topbar-title">'+(g?g.sh:'TM/HM')+'</div>'+
+        themeBtnHTML()+
+        '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+      '</div>'+
+      '<div class="empty">Loading TMs &amp; HMs for '+(g?g.sh:'game')+'…</div></div>';
+  }
+
+  // No machines for this game
+  if(!S.tmList.length){
+    return '<div class="screen">'+
+      '<div class="topbar">'+
+        '<div class="topbar-title">'+(g?g.sh:'TM/HM')+'</div>'+
+        themeBtnHTML()+
+        '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+      '</div>'+
+      '<div class="empty">No TMs or HMs found for '+(g?g.n:'this game')+'.</div></div>';
+  }
+
+  // Split HM and TM
+  var hms=S.tmList.filter(function(t){return t.itemName.indexOf('hm')===0;});
+  var tms=S.tmList.filter(function(t){return t.itemName.indexOf('tm')===0;});
+  function tmRow(t){
+    if(!t.moveName)return '';
+    var c=mvDetCache[t.moveName];
+    var power=c?(c.power!=null?String(c.power):'-'):'-';
+    var acc=c?(c.accuracy!=null?String(c.accuracy):'-'):'-';
+    var desc=c?esc(c.short||''):'';
+    var typeHTML=c?tcIcon(c.type):'<div class="mv-ph"></div>';
+    var dcHTML=c?dcIcon(c.dmgClass):'<div class="mv-ph"></div>';
+    var labelPrefix=t.itemName.slice(0,2).toUpperCase();
+    var labelNum=t.itemName.slice(2);
+    return '<div class="mv-row" id="tmr-'+t.itemName+'" onclick="openTMByItem(\''+t.itemName+'\')">'+
+      '<div class="mv-no"><b>'+labelPrefix+'</b>'+labelNum+'</div>'+
+      '<div class="mv-row-main">'+
+        '<div class="mv-row-name">'+cap(t.moveName)+'</div>'+
+        (desc?'<div class="mv-row-desc">'+desc+'</div>':'<div class="mv-row-desc">&nbsp;</div>')+
+      '</div>'+
+      '<div class="mv-stat-pill">'+
+        '<div class="mv-stat-cell">'+power+'</div>'+
+        '<div class="mv-stat-cell">'+acc+'</div>'+
+      '</div>'+
+      typeHTML+dcHTML+
+    '</div>';
+  }
+  var html='';
+  if(hms.length){html+='<div class="section-label">HM</div>'+hms.map(tmRow).join('');}
+  if(tms.length){html+='<div class="section-label">TM</div>'+tms.map(tmRow).join('');}
+  return '<div class="screen">'+
+    '<div class="topbar">'+
+      '<div class="topbar-title">'+(g?g.sh:'TM/HM')+'</div>'+
+      themeBtnHTML()+
+      '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+    '</div>'+
+    '<div class="scroll">'+html+'</div></div>';
+}
+function enrichVisibleTMs(){
+  // Fetch details for all TM/HM moves
+  S.tmList.forEach(function(t){
+    if(!t.moveName||mvDetCache[t.moveName])return;
+    af(API+'/move/'+t.moveName).then(function(d){
+      var short='';
+      if(d.effect_entries){
+        var ee=d.effect_entries.filter(function(e){return e.language.name==='en';})[0];
+        if(ee)short=(ee.short_effect||ee.effect||'').replace(/\$effect_chance/g,d.effect_chance||'');
+      }
+      if(!short&&d.flavor_text_entries){
+        var fe=d.flavor_text_entries.filter(function(e){return e.language.name==='en';});
+        if(fe.length)short=(fe[fe.length-1].flavor_text||'').replace(/[\f\n]/g,' ');
+      }
+      mvDetCache[t.moveName]={
+        power:d.power,accuracy:d.accuracy,type:d.type.name,
+        dmgClass:d.damage_class?d.damage_class.name:'status',
+        short:short
+      };
+      if(S.tab==='tms'&&S.tmView==='list'){
+        var row=document.getElementById('tmr-'+t.itemName);
+        if(row){
+          // Rebuild the row inline
+          pane('tms').innerHTML=renderTMs();
+        }
+      }
+    }).catch(function(){});
+  });
+}
+function openTMByItem(itemName){
+  var t=S.tmList.filter(function(x){return x.itemName===itemName;})[0];
+  if(!t||!t.moveName)return;
+  S.tmSelMachine=t;S.tmDet=null;S.tmView='detail';S.mvDet=null;S.mvLearners=null;
+  pane('tms').innerHTML=renderTMs();
+  af(API+'/move/'+t.moveName).then(function(md){
+    S.mvDet=md;S.tmDet=md;
+    if(S.tmView==='detail')pane('tms').innerHTML=renderTMs();
+  });
+}
+function renderTMDetail(){
+  var t=S.tmSelMachine;
+  var d=S.mvDet;
+  if(!d)return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="closeTM()">‹</button><div class="topbar-title">'+(t?t.itemName.toUpperCase():'TM')+'</div></div><div class="empty">Loading…</div></div>';
+  var tt=d.type.name;
+  var flav='';
+  if(d.flavor_text_entries){var fe=d.flavor_text_entries.filter(function(e){return e.language.name==='en';});if(fe.length)flav=(fe[fe.length-1].flavor_text||'').replace(/[\f\n]/g,' ');}
+  var eff='';
+  if(d.effect_entries){var ee=d.effect_entries.filter(function(e){return e.language.name==='en';})[0];if(ee)eff=(ee.short_effect||ee.effect||'').replace(/\$effect_chance/g,d.effect_chance||'');}
+  var label=(t.itemName.slice(0,2).toUpperCase())+t.itemName.slice(2);
+  return '<div class="screen">'+
+    '<div class="topbar"><button class="back-btn" onclick="closeTM()">‹</button><div class="topbar-title">'+label+' — '+cap(d.name)+'</div></div>'+
+    '<div class="scroll" style="padding:14px">'+
+      '<div style="background:linear-gradient(135deg,'+TC[tt]+','+TC[tt]+'80);border-radius:18px;padding:18px 16px;margin-bottom:14px;display:flex;align-items:center;gap:14px">'+
+        (t.sprite?'<img src="'+t.sprite+'" width="50" height="50" style="image-rendering:pixelated;flex-shrink:0"/>':'<div style="width:50px;height:50px;border-radius:12px;background:rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-size:22px">💿</div>')+
+        '<div style="flex:1"><div style="font-size:10px;color:rgba(255,255,255,0.7);font-family:monospace;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px">'+label+'</div>'+
+        '<div style="font-size:22px;font-weight:900;color:#fff;text-transform:capitalize">'+cap(d.name)+'</div></div></div>'+
+      (flav?'<p style="font-size:13px;color:#9B9BA8;line-height:1.65;margin-bottom:11px;background:#141420;border-radius:13px;padding:11px 13px;font-style:italic;border:0.5px solid rgba(255,255,255,0.05)">'+esc(flav)+'</p>':'')+
+      (eff?card('Effect','<p style="font-size:13px;color:#C7C7D0;line-height:1.7">'+esc(eff)+'</p>'):'')+
+      card('Move Stats','<div class="info-grid">'+[
+        iitem('Power',d.power||'—'),
+        iitem('Accuracy',d.accuracy?d.accuracy+'%':'—'),
+        iitem('PP',d.pp||'—'),
+        iitem('Priority',d.priority),
+        iitem('Type',cap(tt)),
+        iitem('Category',cap(d.damage_class?d.damage_class.name:'status'))
+      ].join('')+'</div>')+
+      '<button onclick="showTMLearners()" style="width:100%;padding:14px;background:linear-gradient(135deg,'+TC[tt]+','+TC[tt]+'AA);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px '+TC[tt]+'55">View Learners</button>'+
+    '</div></div>';
+}
+function showTMLearners(){
+  S.tmView='learners';S.mvView='learners';S.mvLearners=null;S.mvLoadingLearners=true;
+  pane('tms').innerHTML=renderTMs();
+  loadMoveLearners();
+}
+function closeTM(){S.tmView='list';S.tmSelMachine=null;S.tmDet=null;S.mvDet=null;pane('tms').innerHTML=renderTMs();}
+
+// ── ITEMS ──
+function renderItems(){
+  if(S.itemView==='detail')return renderItemDet();
+  var filt=S.itemList;
+  if(S.itemQ.trim()){var q=S.itemQ.toLowerCase();filt=filt.filter(function(i){return i.name.indexOf(q)>=0;});}
+  var maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);if(S.itemPage>maxPg)S.itemPage=0;
+  var paged=filt.slice(S.itemPage*PER,(S.itemPage+1)*PER);
+  var g=S.game?gameById(S.game):null;
+  return '<div class="screen">'+
+    '<div class="topbar">'+
+      '<div class="topbar-title">Items</div>'+
+      themeBtnHTML()+
+      '<div onclick="openGamePicker()">'+gameBadge(g,34)+'</div>'+
+    '</div>'+
+    '<div class="search-wrap"><input id="item-search" class="srch" value="'+esc(S.itemQ)+'" placeholder="Search items…" oninput="itemSearch(this.value)"/></div>'+
+    '<div class="scroll" id="item-scroll">'+(S.itemList.length===0?'<div class="empty">Loading items…</div>':
+      paged.map(function(it){return '<div class="list-item" onclick="openItem(\''+it.name+'\',\''+it.url+'\')">'+
+        '<div style="width:34px;height:34px;background:linear-gradient(135deg,#FF9F0A,#FFCA50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🎒</div>'+
+        '<span style="flex:1;font-size:14px;font-weight:600;text-transform:capitalize">'+cap(it.name)+'</span>'+
+        '<span style="color:#3A3A48;font-size:18px">›</span></div>';}).join(''))+
+    '</div>'+
+    '<div class="pg-row" id="item-pg">'+
+      '<button class="pg-btn"'+(S.itemPage===0?' disabled':'')+' onclick="itemPg(-1)">Prev</button>'+
+      '<span class="pg-info">'+filt.length+' · '+(S.itemPage+1)+'/'+(maxPg+1)+'</span>'+
+      '<button class="pg-btn"'+(S.itemPage>=maxPg?' disabled':'')+' onclick="itemPg(1)">Next</button>'+
+    '</div></div>';
+}
+function itemSearch(v){
+  S.itemQ=v;S.itemPage=0;
+  var filt=S.itemList;if(v.trim()){var q=v.toLowerCase();filt=filt.filter(function(i){return i.name.indexOf(q)>=0;});}
+  var maxPg=Math.max(0,Math.ceil(filt.length/PER)-1);
+  var paged=filt.slice(0,PER);
+  var sc=document.getElementById('item-scroll');
+  if(sc)sc.innerHTML=paged.map(function(it){return '<div class="list-item" onclick="openItem(\''+it.name+'\',\''+it.url+'\')">'+
+    '<div style="width:34px;height:34px;background:linear-gradient(135deg,#FF9F0A,#FFCA50);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🎒</div>'+
+    '<span style="flex:1;font-size:14px;font-weight:600;text-transform:capitalize">'+cap(it.name)+'</span>'+
+    '<span style="color:#3A3A48;font-size:18px">›</span></div>';}).join('');
+  var pg=document.getElementById('item-pg');
+  if(pg)pg.innerHTML='<button class="pg-btn" disabled>Prev</button>'+
+    '<span class="pg-info">'+filt.length+' · 1/'+(maxPg+1)+'</span>'+
+    '<button class="pg-btn"'+(maxPg===0?' disabled':'')+' onclick="itemPg(1)">Next</button>';
+}
+function itemPg(d){var f=S.itemList;if(S.itemQ.trim()){var q=S.itemQ.toLowerCase();f=f.filter(function(i){return i.name.indexOf(q)>=0;});}S.itemPage=Math.max(0,Math.min(Math.max(0,Math.ceil(f.length/PER)-1),S.itemPage+d));pane('items').innerHTML=renderItems();}
+function openItem(name,url){S.itemSelName=name;S.itemDet=null;S.itemView='detail';pane('items').innerHTML=renderItems();af(url).then(function(d){S.itemDet=d;pane('items').innerHTML=renderItems();});}
+function renderItemDet(){
+  var det=S.itemDet;
+  if(!det)return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="closeItem()">‹</button><div class="topbar-title">'+esc(cap(S.itemSelName||''))+'</div></div><div class="empty">Loading…</div></div>';
+  var desc='';
+  if(det.effect_entries){var ee=det.effect_entries.filter(function(e){return e.language.name==='en';})[0];if(ee)desc=ee.short_effect||ee.effect||'';}
+  if(!desc&&det.flavor_text_entries){var fe2=det.flavor_text_entries.filter(function(e){return e.language.name==='en';})[0];if(fe2)desc=fe2.text||'';}
+  desc=desc||'No description.';
+  return '<div class="screen"><div class="topbar"><button class="back-btn" onclick="closeItem()">‹</button><div class="topbar-title">'+esc(cap(det.name))+'</div></div>'+
+    '<div class="scroll" style="padding:14px">'+
+      '<div style="display:flex;align-items:center;gap:14px;margin-bottom:13px;background:#141420;border-radius:16px;padding:14px;border:0.5px solid rgba(255,255,255,0.05)">'+
+        (det.sprites&&det.sprites.default?'<img src="'+det.sprites.default+'" width="56" height="56" style="image-rendering:pixelated;flex-shrink:0"/>':'<div style="width:56px;height:56px;background:linear-gradient(135deg,#FF9F0A,#FFCA50);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px">🎒</div>')+
+        '<div><div style="font-size:10px;color:#6B6B78;text-transform:uppercase;font-weight:700;margin-bottom:2px">'+esc(cap(det.category&&det.category.name?det.category.name:''))+'</div>'+
+        '<div style="font-size:19px;font-weight:800;text-transform:capitalize">'+esc(cap(det.name))+'</div></div></div>'+
+      card('Effect','<p style="font-size:13px;color:#C7C7D0;line-height:1.7">'+esc(desc)+'</p>')+
+      card('Details','<div class="info-grid">'+[iitem('Cost',det.cost>0?String(det.cost.toLocaleString())+' P':'N/A'),iitem('Category',cap(det.category&&det.category.name?det.category.name:'')),iitem('Fling Power',det.fling_power||'—'),iitem('Attributes',(det.attributes||[]).map(function(a){return cap(a.name);}).join(', ')||'—')].join('')+'</div>')+
+    '</div></div>';
+}
+function closeItem(){S.itemView='list';pane('items').innerHTML=renderItems();}
+
+// ── INIT ──
+window.onerror=function(msg,src,line,col,err){document.body.innerHTML='<div style="background:#fff;padding:20px;font-family:monospace;font-size:12px;color:red;white-space:pre-wrap;overflow:auto">ERR: '+msg+'\nL'+line+':'+col+'\n'+(err&&err.stack?err.stack:'')+'</div>';return true;};
+function init(){
+  document.documentElement.setAttribute('data-theme',S.theme);
+  var tc=document.getElementById('tab-content');
+  tc.innerHTML=TABS.map(function(t){return '<div class="tab-pane'+(t.id==='dex'?' act':'')+'" data-tab="'+t.id+'"></div>';}).join('');
+  renderNav();
+  pane('dex').innerHTML=renderDexList();
+  pane('types').innerHTML=renderTypes();
+  pane('locs').innerHTML=renderLocs();
+  pane('moves').innerHTML=renderMoves();
+  pane('tms').innerHTML=renderTMs();
+  pane('items').innerHTML=renderItems();
+  af(API+'/pokemon?limit=1025&offset=0').then(function(d){S.dexList=d.results||[];if(S.dexView==='list')pane('dex').innerHTML=renderDexList();});
+  af(API+'/region?limit=20').then(function(d){S.locRegions=d.results||[];pane('locs').innerHTML=renderLocs();});
+  af(API+'/item?limit=500&offset=0').then(function(d){S.itemList=d.results||[];pane('items').innerHTML=renderItems();});
+}
+init();
+</script>
+</body>
+</html>
