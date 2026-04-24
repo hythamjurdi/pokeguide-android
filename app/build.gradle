@@ -37,6 +37,13 @@ android {
         }
     }
 
+    // Clean APK filename: PokeGuide-v1.0.0.apk instead of app-release.apk
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "PokeGuide-v${variant.versionName}.apk"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
