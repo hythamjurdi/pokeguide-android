@@ -14,23 +14,62 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### How to install
 
-1. Download `PokeGuide-v1.1.0.apk` from the link above
+1. Download `PokeGuide-v1.2.0.apk` from the link above
 2. On your Android device, go to **Settings → Security** (or **Apps → Special access**) and allow installation from unknown sources for your browser/file manager
 3. Tap the downloaded APK file and follow the prompts
 4. Open **PokéGuide** from your app drawer — look for the red Pokéball icon
 
-> **Upgrading from v1.0.0?** Just install the new APK — Android will update the existing app and keep your settings.
+> **Upgrading from a previous version?** Just install the new APK — Android will update the existing app and keep your settings.
 
 ---
 
 ## 📝 Changelog
 
-### v1.1.0 — *Latest*
+### v1.2.0 — *Latest*
 
-- 🗺️ **Location emojis** — each location type now has a distinct, consistent emoji icon (routes, caves, forests, cities, towers, gyms, seas, etc.) that stays consistent across every region and every game's map data
-- 🎨 **Improved theme toggle** — icon now correctly reflects the action: shows 🌙 in dark mode (tap to go light) and ☀️ in light mode (tap to go dark)
-- 📇 **Grid view for Pokédex** — toggle between list and grid layouts; grid view shows larger sprites in a tighter, more scannable arrangement
-- 💾 **Persistent settings** — your theme choice, game filter, and Pokédex view (list/grid) are now saved and restored when you reopen the app — no more resetting every launch
+A massive UI overhaul plus a brand new feature.
+
+**🎨 Liquid glass UI**
+- Frosted-glass top bars, bottom nav, cards, modals, and pagination buttons — inspired by iOS Control Center
+- Type-color atmospheric backdrops behind the glass: every Pokémon's detail page is tinted with its own type colors all the way down the page, and the compare view splits the page with one Pokémon's colors on each side
+- Soft fade-out at the bottom of every page so the gradient blends seamlessly into the background
+- Performance-tuned: scroll-heavy areas (list rows) skip per-row blur to stay buttery smooth on the Thor's WebView
+
+**⚙️ Settings menu** *(replaces the old per-screen toggles)*
+- Single ⚙ button next to the game selector opens a Settings sheet
+- **Appearance** — toggle Dark / Light theme
+- **Graphics** — toggle Fancy (glass) / Simple (flat) — one tap to drop the effects on weaker devices
+- **Items per Page** — choose 20, 40, 60, 100, or **All** (single long scrollable list)
+- All settings persist across app restarts
+
+**⚖️ Pokémon comparison**
+- New "Compare" button in any Pokémon's detail view's hero
+- Pick a second Pokémon from a dedicated picker (the one you started from is greyed out and shown at the bottom for context)
+- Picker has its own list ↔ grid view toggle, separately persistent from the main Pokédex
+- Picker respects the global game filter
+- Three side-by-side comparison tabs:
+  - **Stats** — base stat bars with winners highlighted in green, totals, height/weight/catch rate, abilities side-by-side
+  - **Type** — type pills + defensive matchups grouped by Immune / Weak / Resists
+  - **Moves** — shared moves first, then moves unique to each (filtered by current game)
+- Tap either Pokémon's portrait at the top to swap it without backing out — so you can chain comparisons quickly
+
+**🎯 Better navigation & polish**
+- Floating prev/next page buttons in the bottom corners (replaces the old bottom bar) — they fade out when you scroll down for max screen space and slide back in when you scroll up
+- Page counter pill in the top bar shows current page, total pages, and total result count (e.g. `1/22 · 1025`)
+- ✕ clear button inside every search bar — instantly empty a search and restore the full list
+- Rich move rows everywhere (Pokédex detail Moves tab, Compare Moves tab, TM/HM list) — name, description, power, accuracy, type badge, and damage category icon
+- Compare moves now show full Pokémon names in the column headers instead of 4-letter abbreviations
+- Compare result page header scrolls with content (no longer pinned) for more screen real estate
+- Sub-tabs under the hero auto-hide on scroll-down for full-screen content viewing
+- Fixed light mode contrast issues across the app — abilities, characteristics, and other secondary text are now properly legible on white backgrounds
+- Removed the curved "wave" divider between hero and content for a cleaner, more cohesive look
+
+### v1.1.0
+
+- 🗺️ **Location emojis** — each location type has a distinct, consistent emoji icon (routes, caves, forests, cities, towers, gyms, seas, etc.)
+- 🎨 **Improved theme toggle** — icon now correctly reflects the action: 🌙 in dark mode, ☀ in light mode
+- 📇 **Grid view for Pokédex** — toggle between list and grid layouts
+- 💾 **Persistent settings** — your theme choice, game filter, and Pokédex view are saved between sessions
 
 ### v1.0.0
 
@@ -46,62 +85,72 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### 🔴 Pokédex
 - Browse all **1,025 Pokémon** across all 9 generations
-- **Toggle between list and grid views** — grid view shows larger sprites for quick visual scanning
+- **Toggle between list and grid views** — grid shows larger sprites for quick visual scanning
 - Official sprites, Pokédex numbers, and names
-- Fast search by name or Pokédex number
+- Fast search by name or Pokédex number with a one-tap clear button
 
 ### 📖 Pokémon Detail View
 - Full-bleed gradient hero using the Pokémon's type colors
+- **Type-color atmospheric backdrop** flows down the entire page in fancy mode — every card floats on a tinted gradient that matches the Pokémon
 - **High-resolution official artwork** with normal/shiny toggle
-- Species genus and Pokédex number prominently displayed
-- **Info tab** — flavor text, full base stat bars with total, type matchups (Immune / Weak / Resists), abilities (regular + hidden), height, weight, base XP, catch rate, generation, legendary status
-- **Evolution tab** — every evolution stage with large sprites and accurate requirements (level, stone, trade, friendship, held item, time of day, location, known move, rain, etc.)
-- **Catch tab** — base catch rate, happiness, growth rate, egg groups, and wild encounter locations
-- **Moves tab** — full move list filtered by learn method and game, each move tappable for details
-- Sub-tabs auto-hide on scroll down for maximum screen space, slide back up on scroll up
+- **Compare button** — tap to compare with any other Pokémon side-by-side
+- **Info tab** — flavor text, base stat bars with total, type matchups, abilities (regular + hidden), height, weight, base XP, catch rate, generation, legendary status
+- **Evolution tab** — every stage with large sprites and accurate requirements (level, stone, trade, friendship, held item, time of day, location, known move, rain, etc.)
+- **Catch tab** — base catch rate, happiness, growth rate, egg groups, wild encounter locations
+- **Moves tab** — full move list with rich details (power, accuracy, type, damage category) filtered by learn method and game
+- Sub-tabs auto-hide on scroll-down for max screen space
+
+### ⚖️ Compare Pokémon
+- Side-by-side comparison of any two Pokémon
+- **Stats tab** — base stat bars with winners highlighted, totals, height/weight, abilities
+- **Type tab** — type pills + defensive matchup breakdown
+- **Moves tab** — shared moves with both learn levels, then moves unique to each Pokémon
+- Tap either portrait at the top to swap that slot for a different Pokémon
+- Type-color atmospheric backdrop splits the page (left side tinted by Pokémon A's types, right by B's)
 
 ### ⚡ Moves
 - Full database of all **~900 moves**
-- Rich list rows with name, description, power, accuracy, type badge, and damage category (physical/special/status)
-- Tap any move for full details: flavor text, effect description, stats (Power / Accuracy / PP / Priority / Type / Category)
-- **"View Learners"** button — see every Pokémon that can learn the move, tap any to jump to its detail page
+- Rich list rows: name, description, power, accuracy, type badge, damage category (physical/special/status)
+- Tap any move for full details and a list of every Pokémon that can learn it
 
 ### 💿 TM & HM
-- Per-game machine layouts (accurate to each game — HM04 in XY is different from HM04 in Red/Blue)
-- Split by HM and TM sections
-- Full TM/HM detail pages with official item sprite, gradient type banner, and **"View Learners"** button
+- Per-game machine layouts (HM04 in XY differs from HM04 in Red/Blue)
+- Split into HM and TM sections with rich rows showing all move details
+- Tap any TM/HM for full details and learner list
 
 ### 🎒 Items
 - Browse and search the full item database
-- Category, effect description, cost, fling power, and attributes
-- Official pixel-perfect item sprites
+- Category, effect description, cost, fling power, attributes, official sprites
 
 ### 📍 Locations
 - Drill down from Region → Location → Encounter details
-- **Location type emojis** — every location gets a distinct icon (route, cave, forest, city, tower, gym, sea, etc.) that stays consistent across all regions and games
+- Distinct emoji icon per location type, consistent across all regions
 - Every region from Kanto to Paldea
-- Each encounter shows the Pokémon, which games it appears in, and level range
-- Tap any Pokémon to jump to its Pokédex detail
+- Each encounter shows the Pokémon, games it appears in, and level range
 
 ### 🔀 Type Chart
 - Full interactive 18×18 type effectiveness matrix
 - Toggle between **Attacking** and **Defending** views
-- Color-coded cells for immune / resist / normal / super-effective
+- Color-coded cells
 
 ### 🎮 Global Game Filter
-- Tap the circular game badge in any top bar to open a full-screen game picker
-- Choose from **21 game versions**, from Red/Blue through Scarlet/Violet
-- Each game shown with its own colored icon and abbreviation (RB, GS, RS, FRLG, DP, BW, XY, SM, SwSh, BDSP, LA, SV, etc.)
-- **Persistent across the entire app** — your selection filters Pokédex, Items, Moves, TMs/HMs, and Pokémon move lists globally
-- Your selection is **remembered between sessions**
+- Tap the game badge in any top bar to open the picker
+- **21 game versions**, from Red/Blue through Scarlet/Violet
+- Persistent across the entire app and across sessions
+- "All Games" option to remove the filter
 
-### 🌓 Light & Dark Themes
-- One-tap toggle on every major screen
-- The icon shows what tapping it will do (🌙 in dark mode, ☀️ in light mode)
-- **Theme choice is saved** and restored when you reopen the app
+### ⚙ Settings
+- Dark / Light theme
+- Fancy / Simple graphics (toggle the glass effects on or off)
+- Items per page (20, 40, 60, 100, or All)
+- All settings saved between sessions
 
-### 💾 Persistent Settings
-All your preferences — theme, game filter, Pokédex view (list/grid) — are saved locally and restored on next launch. No re-configuring every time you open the app.
+### 🎯 Quality of life
+- Floating prev/next page buttons that auto-hide on scroll
+- Page counter in every list view's top bar
+- One-tap clear buttons on every search input
+- One-button settings access — no menu diving
+- Rich, lazily-loaded move details so the app stays responsive
 
 ---
 
@@ -139,7 +188,7 @@ Requires **Android Studio** (Hedgehog or newer).
 2. Open the project in Android Studio and let Gradle sync
 3. Select the `release` build variant: **Build → Select Build Variant** → `release`
 4. Build the APK: **Build → Build Bundle(s) / APK(s) → Build APK(s)**
-5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.1.0.apk`
+5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.2.0.apk`
 
 The release build is signed with the standard Android debug keystore for easy local installs. If you don't have one, run:
 ```bash
@@ -148,14 +197,14 @@ keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -alias
 
 ### Tech stack
 
-| Layer        | Tech                                         |
-| ------------ | -------------------------------------------- |
-| **Android**  | Java, native WebView, single `MainActivity`  |
-| **Frontend** | Pure vanilla JavaScript, HTML, CSS (single file) |
-| **Styling**  | CSS custom properties for light/dark theming |
-| **Storage**  | `localStorage` for persistent settings       |
-| **Data**     | [PokéAPI](https://pokeapi.co) (live)         |
-| **Build**    | Gradle 8.0, AGP 8.1, minSdk 24, targetSdk 34 |
+| Layer        | Tech                                            |
+| ------------ | ----------------------------------------------- |
+| **Android**  | Java, native WebView, single `MainActivity`     |
+| **Frontend** | Pure vanilla JavaScript, HTML, CSS (one file)   |
+| **Styling**  | CSS custom properties + `backdrop-filter` glass |
+| **Storage**  | `localStorage` for persistent settings          |
+| **Data**     | [PokéAPI](https://pokeapi.co) (live)            |
+| **Build**    | Gradle 8.0, AGP 8.1, minSdk 24, targetSdk 34    |
 
 No npm, no webpack, no React, no build step for the frontend — just open `app/src/main/assets/index.html` in a browser and it works.
 
