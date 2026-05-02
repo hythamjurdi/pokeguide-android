@@ -2,7 +2,7 @@
 
 A beautifully designed Pokémon companion app for Android. Originally built for the [AYN Thor](https://www.aynstore.com/products/thor) handheld's bottom screen, but runs on any Android 7.0+ device.
 
-All data pulled live from [PokéAPI](https://pokeapi.co).
+Data pulled live from [PokéAPI](https://pokeapi.co) + bundled curated encounter data scraped from [PokémonDB](https://pokemondb.net).
 
 ---
 
@@ -14,18 +14,272 @@ Or grab it from the [Releases](https://github.com/hythamjurdi/pokeguide-android/
 
 ### How to install
 
-1. Download `PokeGuide-v1.2.0.apk` from the link above
+1. Download `PokeGuide-v1.3.0.apk` from the link above
 2. On your Android device, go to **Settings → Security** (or **Apps → Special access**) and allow installation from unknown sources for your browser/file manager
 3. Tap the downloaded APK file and follow the prompts
 4. Open **PokéGuide** from your app drawer — look for the red Pokéball icon
 
-> **Upgrading from a previous version?** Just install the new APK — Android will update the existing app and keep your settings.
+> **Upgrading from a previous version?** Just install the new APK — Android will update the existing app and keep your settings and progress data.
+
+---
+
+## ✨ Features
+
+### 🏠 Launchpad
+
+The home screen puts everything one tap away:
+
+- **Pokédex hero tile** — stylized pokéball design. Tap to jump straight into the full 1,025-species Pokédex.
+- **Square tile grid** — Bosses, Locations, Moves, and TM & HM with clean white-outlined icons and bold gradient backgrounds. When a game is pinned, tiles show live stats (e.g. "6/8 beaten" on Bosses, region name on Locations).
+- **Glass Progress tile** — frosted dark surface with a live completion ring. Shows dex progress for your pinned game. Tap to open the Progress Checker.
+- **Pin-to-Launchpad** — optionally surface a "Currently Playing" strip at the top of the home screen with your active game's name, badge, and completion %. Activated per-game from the Progress Checker dashboard.
+- **Bottom list** — Compare, Type Chart, and Items for quick access.
+
+### 🔴 Pokédex
+
+- Browse all **1,025 Pokémon** across all 9 generations
+- **List and grid views** — grid uses frosted-glass cells in fancy mode with subtle highlight rings and press-down scale animation
+- Official sprites, Pokédex numbers, and names
+- Fast search by name or Pokédex number with a one-tap clear button
+- Paginated with configurable items per page (50, 100, 200, 300, 500, or All)
+
+### 📖 Pokémon Detail View
+
+- Full-bleed gradient hero using the Pokémon's type colors
+- **Type-color atmospheric backdrop** flows down the entire page in fancy mode
+- **High-resolution official artwork** with normal/shiny toggle
+- **Compare button** — tap to compare with any other Pokémon side-by-side
+- **Info tab** — flavor text, base stat bars, type matchups, abilities, height/weight, catch rate, generation, legendary status
+- **Evolution tab** — every stage with sprites and accurate requirements (level, stone, trade, friendship, held item, time of day, location, etc.)
+- **Catch tab** — catch rate, happiness, growth rate, egg groups, plus **full curated encounter data** for Gen 8/9 games (location, method, weather, rarity %, level range, version exclusivity)
+- **Moves tab** — full move list with power, accuracy, type, damage category, filtered by learn method and game
+
+### ⚖️ Pokémon Comparison
+
+- Compare any two Pokémon side-by-side
+- Dedicated picker with its own list/grid toggle
+- Auto-opens game picker on entry so you can scope comparisons to a specific game
+- Three comparison tabs:
+  - **Stats** — base stat bars with winners highlighted, totals, height/weight, abilities
+  - **Type** — type pills + defensive matchups (Immune / Weak / Resists)
+  - **Moves** — shared moves first, then unique to each (filtered by game)
+
+### 📊 Progress Checker
+
+Track your playthrough across any game:
+
+- **Game picker** with "In Progress" section (games you're actively playing) + "All Games"
+- **Dashboard** per game with completion certificates, What's Next boss card, Pokédex/Bosses/Wanted cards
+- **Pokédex checklist** — 5-column grid, multi-select with floating action bar (Caught / Shiny / Wanted / ✕)
+- **Shiny auto-marks caught** — toggling shiny ON automatically marks the Pokémon as caught
+- **Boss tracker** — mark gym leaders, kahunas, E4, and champions as beaten. Includes accurate team data scraped from PokémonDB.
+- **Wanted list** — tap ♡ on any Pokémon to add it to your wishlist
+- **Celebrations** — gold confetti on dex completion, blue confetti on beating the Champion
+- **Pin to Launchpad** — surface your active playthrough's progress ring on the home screen
+- **In-Progress toggle** — mark/unmark games as active playthroughs
+- **Reset** — clear all progress for a game with a confirmation modal
+
+### 🏆 Bosses
+
+Full boss data for every main-series game, scraped from PokémonDB:
+
+- **Gym Leaders** — all 8 per game (10 for SwSh version-exclusives), with badges and cities
+- **Island Kahunas** — Hala, Olivia, Nanu, Hapu for Sun/Moon and Ultra Sun/Ultra Moon, with correct teams per game
+- **Elite Four** — all 4 members per game with full team data
+- **Champions** — Leon (SwSh), Cynthia (DP/Pt/BDSP), Kukui (SM), Hau (USUM), Blue (RB/Y/FRLG), Lance (GSC/HGSS), and all others
+- **Kanto post-game gyms** — Crystal and HGSS include all 16 gym leaders (8 Johto + 8 Kanto)
+- Boss detail view with full team, types, levels, and sprites
+- Sorted by progression order (Gyms → Kahunas → E4 → Champion)
+- Previous/next navigation between bosses
+
+### 🗺️ Locations
+
+- Browse locations by region, filtered by active game
+- **Curated encounter data** for Gen 8/9 games (SwSh, BDSP, Legends Arceus, SV, LGPE) — tap a location to see every catchable Pokémon there with method, rarity %, and level range
+- **Game-aware filtering** — selecting a game narrows to that game's region and shows only encounters from that game's versions
+- Falls back to PokéAPI encounter data for Gen 1-7 games
+
+### 📦 Offline Mode
+
+- **IndexedDB-based cache** — Pokémon data, sprites, and artwork stored locally for offline access
+- **Bulk download** — download all 1,025 Pokémon's data + sprites in one go (6 phases, resumable, cancellable)
+- Estimated ~530-630 MB for full offline coverage
+- **No-connection fallback** — shows cached data when offline, with a clear "no connection" screen if nothing is cached
+- Manage cache from Settings → Offline Data
+
+### 🔮 Type Chart
+
+- Full interactive 18×18 type effectiveness matrix
+- Toggle between Attacking and Defending views
+- Color-coded cells
+
+### 🎮 Global Game Filter
+
+- Tap the game badge in any top bar to open the picker
+- **21 game versions**, from Red/Blue through Scarlet/Violet
+- Affects Pokédex filtering, encounter data, boss lists, location regions, and move lists
+- Starts on "All" each session — no stale filter from a previous playthrough
+
+### ⚙️ Settings
+
+- Dark / Light theme
+- Fancy / Simple graphics (toggle the glass effects on or off)
+- Items per page (50, 100, 200, 300, 500, or All)
+- Offline data management
+- All settings saved between sessions
+
+### 🎨 Liquid Glass UI
+
+- Frosted-glass top bars, bottom nav, cards, modals, and pagination buttons
+- Type-color atmospheric backdrops on detail pages
+- Frosted grid cells in Pokédex grid view
+- Glass progress tile on launchpad
+- Soft fade-out gradients for seamless blending
+- Performance-tuned: scroll-heavy areas skip per-row blur
+
+---
+
+## 📱 Designed for the AYN Thor
+
+The AYN Thor is an Android handheld with a 1080×1920 bottom screen. PokéGuide was built from the ground up with that form factor in mind: compact layouts, touch targets sized for thumb use, fullscreen immersive mode, and landscape-friendly. But everything scales nicely — it works just as well on a phone or tablet.
+
+---
+
+## 🙏 Credits
+
+- Pokémon data: [PokéAPI](https://pokeapi.co)
+- Boss & encounter data: [PokémonDB](https://pokemondb.net)
+- Sprites & official artwork: [PokéAPI/sprites](https://github.com/PokeAPI/sprites)
+- Pokémon © Nintendo / Creatures Inc. / GAME FREAK Inc.
+
+This is a non-commercial fan project. All Pokémon names, images, and data are property of their respective owners.
+
+---
+
+## 📄 License
+
+[MIT](LICENSE)
+
+---
+
+<details>
+<summary><strong>🔨 Building from source</strong> (for developers)</summary>
+
+Requires **Android Studio** (Hedgehog or newer).
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/hythamjurdi/pokeguide-android.git
+   ```
+2. Open the project in Android Studio and let Gradle sync
+3. Select the `release` build variant: **Build → Select Build Variant** → `release`
+4. Build the APK: **Build → Build Bundle(s) / APK(s) → Build APK(s)**
+5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.3.0.apk`
+
+The release build is signed with the standard Android debug keystore for easy local installs.
+
+### Tech stack
+
+| Layer        | Tech                                                          |
+| ------------ | ------------------------------------------------------------- |
+| **Android**  | Java, native WebView, single `MainActivity`                   |
+| **Frontend** | Pure vanilla JavaScript, HTML, CSS (one file)                 |
+| **Styling**  | CSS custom properties + `backdrop-filter` glass               |
+| **Storage**  | `localStorage` for settings/progress, `IndexedDB` for cache  |
+| **Data**     | [PokéAPI](https://pokeapi.co) (live) + bundled JSON (scraped) |
+| **Scrapers** | Node.js + jsdom — `scripts/scrape-bosses.js` and `scripts/scrape-catchability.js` |
+| **Build**    | Gradle 8.0, AGP 8.1, minSdk 24, targetSdk 34                 |
+
+No npm, no webpack, no React, no build step for the frontend — just open `app/src/main/assets/index.html` in a browser and it works.
+
+### Data files
+
+Boss and encounter data are bundled with the app and **do not need to be regenerated** between builds. The scrapers only need to be re-run if you want to refresh data from the source sites.
+
+| File | Description |
+| ---- | ----------- |
+| `assets/bosses.js` | Gym leaders, kahunas, E4, champions for all games |
+| `assets/data/catch/*.js` | Per-game encounter data (SwSh, BDSP, LA, SV, LGPE) |
+| `assets/data/catch/manifest.js` | Index of available curated games |
+
+See [`scripts/README.md`](scripts/README.md) for scraper documentation.
+
+</details>
 
 ---
 
 ## 📝 Changelog
 
-### v1.2.0 — *Latest*
+### v1.3.0 — *Latest*
+
+The biggest update yet — a full Progress Checker, offline mode, curated encounter data for Gen 8/9, boss data for every game, a redesigned launchpad, and dozens of accuracy and polish fixes.
+
+**📊 Progress Checker**
+- Track your playthrough for any of the 21 supported games
+- Per-game dashboard with Pokédex completion, boss progress, and wanted list cards
+- Catch checklist with 5-column grid view and multi-select floating action bar (Caught / Shiny / Wanted)
+- Shiny toggle automatically marks as caught — you can't have a shiny you haven't caught
+- Boss tracker with accurate team data for every gym leader, kahuna, E4 member, and champion
+- Wanted list — tap ♡ on any Pokémon to wishlist it
+- Gold confetti celebration on dex completion, blue confetti on beating the Champion
+- "In Progress" toggle pins games to the top of the game picker
+- "Pin to Launchpad" toggle surfaces your active game's progress ring on the home screen
+- Reset with glass confirmation modal
+
+**🏆 Boss data for all games**
+- Scraped from PokémonDB with full team data (Pokémon, types, levels)
+- 229 bosses across 20 games
+- Island Kahunas (Hala, Olivia, Nanu, Hapu) added for Sun/Moon and Ultra Sun/Ultra Moon with correct per-game teams
+- Champion Leon added for Sword & Shield with full 6-Pokémon team
+- Fixed duplicate champion entries (Blue appeared 3x in some games — now 1x)
+- Fixed boss ordering (BDSP had E4 members mixed in with gym leaders)
+- Sorted by progression: Gyms → Kahunas → Elite Four → Champion
+
+**🗺️ Curated encounter data (Gen 8/9)**
+- Scraped from PokémonDB for Sword/Shield, Brilliant Diamond/Shining Pearl, Legends: Arceus, Scarlet/Violet, and Let's Go Pikachu/Eevee
+- Per-pokémon location, catch method, weather/biome, rarity %, level range, and version exclusivity
+- Includes DLC areas (Isle of Armor, Crown Tundra, Teal Mask, Indigo Disk)
+- Loaded via script tags for reliable WebView compatibility (no file:// fetch issues)
+- Integrated into the Catch sub-tab of every Pokémon's detail view
+- Integrated into the Locations tab — curated games show real encounter lists per location
+- Falls back to PokéAPI for Gen 1-7 games
+
+**📦 Offline mode**
+- IndexedDB-based cache for Pokémon data, sprites, and artwork
+- Bulk download all 1,025 Pokémon's data + images in one go (6-phase download, resumable, cancellable)
+- ~530-630 MB for full coverage
+- Automatic memory → IDB → network fallback with retry logic
+- "No connection & no cached data" fallback screen
+- Manage from Settings → Offline Data
+
+**🏠 Redesigned launchpad**
+- New Pokédex hero tile with pokéball anatomy (red gradient, equator line, centre button)
+- Square tile grid with minimalist white-outlined icons (Bosses, Locations, Moves, TM & HM)
+- Frosted-glass Progress tile with live ring chart showing pinned game's dex completion
+- Optional "Currently Playing" strip at top when a game is pinned
+- Compare, Type Chart, and Items in a clean bottom list
+
+**🔍 Dex grid view upgrade**
+- Frosted-glass grid cells in fancy mode with subtle inner highlight ring
+- Scale animation on press
+- Slightly larger gaps and rounded corners
+
+**🎮 Game filter improvements**
+- No longer persists between sessions — always starts on "All" to avoid stale filters
+- Locations tab respects game filter: narrows to the active game's region and filters encounters by game version
+- Compare auto-opens the game picker on entry
+- Regional dex accuracy fixed: Sun/Moon shows 302 (not 809), Ultra Sun/Ultra Moon shows 403
+- Curated games use their actual species count for dex totals (not the gen-cap fallback)
+
+**🎯 Polish & fixes**
+- Nav bar slides in from the right in glass mode (no more instant pop-up)
+- Phantom close-on-load animation fixed with js-ready class gating
+- Items per page options updated to 50, 100, 200, 300, 500, All (default 100)
+- "Routes" feature removed — was never functional, showed "not available" messages. All games now show Pokédex + Bosses + Wanted in the Progress Checker.
+- Legends: Arceus boss card shows a clear "uses Wardens instead of Gyms" message instead of empty state
+- `mixed` type added to type color map so champions with diverse teams show a gray type pill
+
+### v1.2.0
 
 A massive UI overhaul plus a brand new feature.
 
@@ -54,20 +308,17 @@ A massive UI overhaul plus a brand new feature.
 - Tap either Pokémon's portrait at the top to swap it without backing out — so you can chain comparisons quickly
 
 **🎯 Better navigation & polish**
-- Floating prev/next page buttons in the bottom corners (replaces the old bottom bar) — they fade out when you scroll down for max screen space and slide back in when you scroll up
-- Page counter pill in the top bar shows current page, total pages, and total result count (e.g. `1/22 · 1025`)
-- ✕ clear button inside every search bar — instantly empty a search and restore the full list
-- Rich move rows everywhere (Pokédex detail Moves tab, Compare Moves tab, TM/HM list) — name, description, power, accuracy, type badge, and damage category icon
-- Compare moves now show full Pokémon names in the column headers instead of 4-letter abbreviations
-- Compare result page header scrolls with content (no longer pinned) for more screen real estate
+- Floating prev/next page buttons in the bottom corners — they fade out when you scroll down and slide back in when you scroll up
+- Page counter pill in the top bar shows current page, total pages, and total result count
+- ✕ clear button inside every search bar
+- Rich move rows everywhere — name, description, power, accuracy, type badge, and damage category icon
 - Sub-tabs under the hero auto-hide on scroll-down for full-screen content viewing
-- Fixed light mode contrast issues across the app — abilities, characteristics, and other secondary text are now properly legible on white backgrounds
-- Removed the curved "wave" divider between hero and content for a cleaner, more cohesive look
+- Fixed light mode contrast issues across the app
 
 ### v1.1.0
 
-- 🗺️ **Location emojis** — each location type has a distinct, consistent emoji icon (routes, caves, forests, cities, towers, gyms, seas, etc.)
-- 🎨 **Improved theme toggle** — icon now correctly reflects the action: 🌙 in dark mode, ☀ in light mode
+- 🗺️ **Location emojis** — each location type has a distinct, consistent emoji icon
+- 🎨 **Improved theme toggle** — icon now correctly reflects the action
 - 📇 **Grid view for Pokédex** — toggle between list and grid layouts
 - 💾 **Persistent settings** — your theme choice, game filter, and Pokédex view are saved between sessions
 
@@ -78,134 +329,3 @@ A massive UI overhaul plus a brand new feature.
 - Global game filter with 21 game versions
 - Light & dark themes
 - Custom Pokéball launcher icon
-
----
-
-## ✨ Features
-
-### 🔴 Pokédex
-- Browse all **1,025 Pokémon** across all 9 generations
-- **Toggle between list and grid views** — grid shows larger sprites for quick visual scanning
-- Official sprites, Pokédex numbers, and names
-- Fast search by name or Pokédex number with a one-tap clear button
-
-### 📖 Pokémon Detail View
-- Full-bleed gradient hero using the Pokémon's type colors
-- **Type-color atmospheric backdrop** flows down the entire page in fancy mode — every card floats on a tinted gradient that matches the Pokémon
-- **High-resolution official artwork** with normal/shiny toggle
-- **Compare button** — tap to compare with any other Pokémon side-by-side
-- **Info tab** — flavor text, base stat bars with total, type matchups, abilities (regular + hidden), height, weight, base XP, catch rate, generation, legendary status
-- **Evolution tab** — every stage with large sprites and accurate requirements (level, stone, trade, friendship, held item, time of day, location, known move, rain, etc.)
-- **Catch tab** — base catch rate, happiness, growth rate, egg groups, wild encounter locations
-- **Moves tab** — full move list with rich details (power, accuracy, type, damage category) filtered by learn method and game
-- Sub-tabs auto-hide on scroll-down for max screen space
-
-### ⚖️ Compare Pokémon
-- Side-by-side comparison of any two Pokémon
-- **Stats tab** — base stat bars with winners highlighted, totals, height/weight, abilities
-- **Type tab** — type pills + defensive matchup breakdown
-- **Moves tab** — shared moves with both learn levels, then moves unique to each Pokémon
-- Tap either portrait at the top to swap that slot for a different Pokémon
-- Type-color atmospheric backdrop splits the page (left side tinted by Pokémon A's types, right by B's)
-
-### ⚡ Moves
-- Full database of all **~900 moves**
-- Rich list rows: name, description, power, accuracy, type badge, damage category (physical/special/status)
-- Tap any move for full details and a list of every Pokémon that can learn it
-
-### 💿 TM & HM
-- Per-game machine layouts (HM04 in XY differs from HM04 in Red/Blue)
-- Split into HM and TM sections with rich rows showing all move details
-- Tap any TM/HM for full details and learner list
-
-### 🎒 Items
-- Browse and search the full item database
-- Category, effect description, cost, fling power, attributes, official sprites
-
-### 📍 Locations
-- Drill down from Region → Location → Encounter details
-- Distinct emoji icon per location type, consistent across all regions
-- Every region from Kanto to Paldea
-- Each encounter shows the Pokémon, games it appears in, and level range
-
-### 🔀 Type Chart
-- Full interactive 18×18 type effectiveness matrix
-- Toggle between **Attacking** and **Defending** views
-- Color-coded cells
-
-### 🎮 Global Game Filter
-- Tap the game badge in any top bar to open the picker
-- **21 game versions**, from Red/Blue through Scarlet/Violet
-- Persistent across the entire app and across sessions
-- "All Games" option to remove the filter
-
-### ⚙ Settings
-- Dark / Light theme
-- Fancy / Simple graphics (toggle the glass effects on or off)
-- Items per page (20, 40, 60, 100, or All)
-- All settings saved between sessions
-
-### 🎯 Quality of life
-- Floating prev/next page buttons that auto-hide on scroll
-- Page counter in every list view's top bar
-- One-tap clear buttons on every search input
-- One-button settings access — no menu diving
-- Rich, lazily-loaded move details so the app stays responsive
-
----
-
-## 📱 Designed for the AYN Thor
-
-The AYN Thor is an Android handheld with a 1080×1920 bottom screen. PokéGuide was built from the ground up with that form factor in mind: compact layouts, touch targets sized for thumb use, fullscreen immersive mode, and landscape-friendly. But everything scales nicely — it works just as well on a phone or tablet.
-
----
-
-## 🙏 Credits
-
-- Pokémon data: [PokéAPI](https://pokeapi.co)
-- Sprites & official artwork: [PokéAPI/sprites](https://github.com/PokeAPI/sprites)
-- Pokémon © Nintendo / Creatures Inc. / GAME FREAK Inc.
-
-This is a non-commercial fan project. All Pokémon names, images, and data are property of their respective owners.
-
----
-
-## 📄 License
-
-[MIT](LICENSE)
-
----
-
-<details>
-<summary><strong>🔨 Building from source</strong> (for developers)</summary>
-
-Requires **Android Studio** (Hedgehog or newer).
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/hythamjurdi/pokeguide-android.git
-   ```
-2. Open the project in Android Studio and let Gradle sync
-3. Select the `release` build variant: **Build → Select Build Variant** → `release`
-4. Build the APK: **Build → Build Bundle(s) / APK(s) → Build APK(s)**
-5. The APK will be at `app/build/outputs/apk/release/PokeGuide-v1.2.0.apk`
-
-The release build is signed with the standard Android debug keystore for easy local installs. If you don't have one, run:
-```bash
-keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-```
-
-### Tech stack
-
-| Layer        | Tech                                            |
-| ------------ | ----------------------------------------------- |
-| **Android**  | Java, native WebView, single `MainActivity`     |
-| **Frontend** | Pure vanilla JavaScript, HTML, CSS (one file)   |
-| **Styling**  | CSS custom properties + `backdrop-filter` glass |
-| **Storage**  | `localStorage` for persistent settings          |
-| **Data**     | [PokéAPI](https://pokeapi.co) (live)            |
-| **Build**    | Gradle 8.0, AGP 8.1, minSdk 24, targetSdk 34    |
-
-No npm, no webpack, no React, no build step for the frontend — just open `app/src/main/assets/index.html` in a browser and it works.
-
-</details>
