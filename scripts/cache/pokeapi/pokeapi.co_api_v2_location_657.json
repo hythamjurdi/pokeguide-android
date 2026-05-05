@@ -1,0 +1,97 @@
+{
+  "areas": [
+    {
+      "name": "kalos-victory-road-unknown-area-322",
+      "url": "https://pokeapi.co/api/v2/location-area/748/"
+    },
+    {
+      "name": "kalos-victory-road-unknown-area-324",
+      "url": "https://pokeapi.co/api/v2/location-area/749/"
+    },
+    {
+      "name": "kalos-victory-road-unknown-area-326",
+      "url": "https://pokeapi.co/api/v2/location-area/750/"
+    },
+    {
+      "name": "kalos-victory-road-outside",
+      "url": "https://pokeapi.co/api/v2/location-area/751/"
+    },
+    {
+      "name": "kalos-victory-road-unknown-area-328",
+      "url": "https://pokeapi.co/api/v2/location-area/752/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 104,
+      "generation": {
+        "name": "generation-vi",
+        "url": "https://pokeapi.co/api/v2/generation/6/"
+      }
+    }
+  ],
+  "id": 657,
+  "name": "kalos-victory-road",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "チャンピオンロード"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "챔피언로드"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Route Victoire"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Siegesstraße"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Calle Victoria"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Via Vittoria"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Victory Road"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "チャンピオンロード"
+    }
+  ],
+  "region": {
+    "name": "kalos",
+    "url": "https://pokeapi.co/api/v2/region/6/"
+  }
+}

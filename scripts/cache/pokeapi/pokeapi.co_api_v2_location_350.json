@@ -1,0 +1,57 @@
+{
+  "areas": [
+    {
+      "name": "castelia-city-area",
+      "url": "https://pokeapi.co/api/v2/location-area/656/"
+    },
+    {
+      "name": "castelia-city-game-freak-hq-1f",
+      "url": "https://pokeapi.co/api/v2/location-area/775/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 8,
+      "generation": {
+        "name": "generation-v",
+        "url": "https://pokeapi.co/api/v2/generation/5/"
+      }
+    }
+  ],
+  "id": 350,
+  "name": "castelia-city",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "ヒウンシティ"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Volucité"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Stratos City"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Castelia City"
+    }
+  ],
+  "region": {
+    "name": "unova",
+    "url": "https://pokeapi.co/api/v2/region/5/"
+  }
+}

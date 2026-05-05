@@ -1,0 +1,33 @@
+{
+  "areas": [],
+  "game_indices": [],
+  "id": 1087,
+  "name": "torchlit-labyrinth",
+  "names": [
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Dédale des Torches"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Fackellabyrinth"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Torchlit Labyrinth"
+    }
+  ],
+  "region": {
+    "name": "paldea",
+    "url": "https://pokeapi.co/api/v2/region/10/"
+  }
+}

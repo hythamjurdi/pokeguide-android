@@ -1,0 +1,111 @@
+{
+  "areas": [
+    {
+      "name": "alola-route-1-east",
+      "url": "https://pokeapi.co/api/v2/location-area/1035/"
+    },
+    {
+      "name": "alola-route-1-hauoli-outskirts",
+      "url": "https://pokeapi.co/api/v2/location-area/1036/"
+    },
+    {
+      "name": "alola-route-1-south",
+      "url": "https://pokeapi.co/api/v2/location-area/1037/"
+    },
+    {
+      "name": "alola-route-1-trainers-school",
+      "url": "https://pokeapi.co/api/v2/location-area/1038/"
+    },
+    {
+      "name": "alola-route-1-west",
+      "url": "https://pokeapi.co/api/v2/location-area/1039/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 8,
+      "generation": {
+        "name": "generation-vii",
+        "url": "https://pokeapi.co/api/v2/generation/7/"
+      }
+    }
+  ],
+  "id": 711,
+  "name": "alola-route-1",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "１ばんどうろ"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "1번도로"
+    },
+    {
+      "language": {
+        "name": "zh-hant",
+        "url": "https://pokeapi.co/api/v2/language/4/"
+      },
+      "name": "１號道路"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Route 1"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Route 1"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Ruta 1"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Percorso 1"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Route 1"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "１番道路"
+    },
+    {
+      "language": {
+        "name": "zh-hans",
+        "url": "https://pokeapi.co/api/v2/language/12/"
+      },
+      "name": "１号道路"
+    }
+  ],
+  "region": {
+    "name": "alola",
+    "url": "https://pokeapi.co/api/v2/region/7/"
+  }
+}

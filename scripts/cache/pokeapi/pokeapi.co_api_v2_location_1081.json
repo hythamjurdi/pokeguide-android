@@ -1,0 +1,33 @@
+{
+  "areas": [],
+  "game_indices": [],
+  "id": 1081,
+  "name": "coastal-plaza",
+  "names": [
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Poste Côtier"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Küsten-Platz"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Coastal Plaza"
+    }
+  ],
+  "region": {
+    "name": "paldea",
+    "url": "https://pokeapi.co/api/v2/region/10/"
+  }
+}

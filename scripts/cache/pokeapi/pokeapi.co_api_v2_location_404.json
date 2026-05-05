@@ -1,0 +1,53 @@
+{
+  "areas": [
+    {
+      "name": "liberty-garden-lighthouse-basement",
+      "url": "https://pokeapi.co/api/v2/location-area/1167/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 62,
+      "generation": {
+        "name": "generation-v",
+        "url": "https://pokeapi.co/api/v2/generation/5/"
+      }
+    }
+  ],
+  "id": 404,
+  "name": "liberty-garden",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "リバティガーデン島"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Île Liberté"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Freiheitsgarten"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Liberty Garden"
+    }
+  ],
+  "region": {
+    "name": "unova",
+    "url": "https://pokeapi.co/api/v2/region/5/"
+  }
+}

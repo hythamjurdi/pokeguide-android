@@ -1,0 +1,60 @@
+{
+  "version": 1777926485079,
+  "generatedAt": "2026-05-04T20:28:05.079Z",
+  "games": {
+    "black-2-white-2": {
+      "file": "black-2-white-2.json",
+      "scrapedAt": "2026-05-04T20:12:46.398Z",
+      "pokemonCount": 215,
+      "availableCount": 301
+    },
+    "black-white": {
+      "file": "black-white.json",
+      "scrapedAt": "2026-05-04T20:28:05.075Z",
+      "pokemonCount": 103,
+      "availableCount": 156
+    },
+    "brilliant-diamond-and-shining-pearl": {
+      "file": "brilliant-diamond-and-shining-pearl.json",
+      "scrapedAt": "2026-04-29T04:25:21.520Z",
+      "pokemonCount": 90,
+      "availableCount": 151
+    },
+    "legends-arceus": {
+      "file": "legends-arceus.json",
+      "scrapedAt": "2026-04-29T04:32:21.877Z",
+      "pokemonCount": 230,
+      "availableCount": 242
+    },
+    "lets-go-pikachu-lets-go-eevee": {
+      "file": "lets-go-pikachu-lets-go-eevee.json",
+      "scrapedAt": "2026-04-29T04:55:59.698Z",
+      "pokemonCount": 119,
+      "availableCount": 153
+    },
+    "omega-ruby-alpha-sapphire": {
+      "file": "omega-ruby-alpha-sapphire.json",
+      "scrapedAt": "2026-05-04T20:02:57.674Z",
+      "pokemonCount": 124,
+      "availableCount": 211
+    },
+    "scarlet-violet": {
+      "file": "scarlet-violet.json",
+      "scrapedAt": "2026-05-04T04:15:14.599Z",
+      "pokemonCount": 332,
+      "availableCount": 664
+    },
+    "sword-shield": {
+      "file": "sword-shield.json",
+      "scrapedAt": "2026-04-29T03:49:39.406Z",
+      "pokemonCount": 357,
+      "availableCount": 584
+    },
+    "x-y": {
+      "file": "x-y.json",
+      "scrapedAt": "2026-05-04T20:01:25.740Z",
+      "pokemonCount": 239,
+      "availableCount": 457
+    }
+  }
+}

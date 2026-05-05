@@ -1,0 +1,38 @@
+{
+  "areas": [
+    {
+      "name": "brava-arena-area",
+      "url": "https://pokeapi.co/api/v2/location-area/956/"
+    }
+  ],
+  "game_indices": [],
+  "id": 962,
+  "name": "brava-arena",
+  "names": [
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Arène du Théâtre"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Bühnenkampffeld"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Brava Arena"
+    }
+  ],
+  "region": {
+    "name": "hisui",
+    "url": "https://pokeapi.co/api/v2/region/9/"
+  }
+}
