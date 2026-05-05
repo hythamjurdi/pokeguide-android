@@ -21,3 +21,8 @@ app/release/
 
 # Log files
 *.log
+java_pid23580.hprof 
+*.hprof 
+scripts/output/ 
+scripts/cache/ 
+scripts/node_modules/ 
