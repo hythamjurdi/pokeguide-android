@@ -1,0 +1,93 @@
+{
+  "areas": [
+    {
+      "name": "reflection-cave-unknown-area-305",
+      "url": "https://pokeapi.co/api/v2/location-area/738/"
+    },
+    {
+      "name": "reflection-cave-unknown-area-306",
+      "url": "https://pokeapi.co/api/v2/location-area/739/"
+    },
+    {
+      "name": "reflection-cave-unknown-area-307",
+      "url": "https://pokeapi.co/api/v2/location-area/740/"
+    },
+    {
+      "name": "reflection-cave-unknown-area-308",
+      "url": "https://pokeapi.co/api/v2/location-area/741/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 56,
+      "generation": {
+        "name": "generation-vi",
+        "url": "https://pokeapi.co/api/v2/generation/6/"
+      }
+    }
+  ],
+  "id": 623,
+  "name": "reflection-cave",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "うつしみのどうくつ"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "비춤의 동굴"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Grotte Miroitante"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Spiegelhöhle"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Cueva Reflejos"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Grotta dei Riflessi"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Reflection Cave"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "映し身の洞窟"
+    }
+  ],
+  "region": {
+    "name": "kalos",
+    "url": "https://pokeapi.co/api/v2/region/6/"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "areas": [
+    {
+      "name": "jubilife-village-area",
+      "url": "https://pokeapi.co/api/v2/location-area/992/"
+    }
+  ],
+  "game_indices": [],
+  "id": 998,
+  "name": "jubilife-village",
+  "names": [
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Rusti-Cité"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Jubeldorf"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Jubilife Village"
+    }
+  ],
+  "region": {
+    "name": "hisui",
+    "url": "https://pokeapi.co/api/v2/region/9/"
+  }
+}

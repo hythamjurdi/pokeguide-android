@@ -1,0 +1,57 @@
+{
+  "areas": [
+    {
+      "name": "desert-resort-entrance",
+      "url": "https://pokeapi.co/api/v2/location-area/583/"
+    },
+    {
+      "name": "desert-resort-area",
+      "url": "https://pokeapi.co/api/v2/location-area/584/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 34,
+      "generation": {
+        "name": "generation-v",
+        "url": "https://pokeapi.co/api/v2/generation/5/"
+      }
+    }
+  ],
+  "id": 376,
+  "name": "desert-resort",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "リゾートデザート"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Désert Délassant"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Wüstenresort"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Desert Resort"
+    }
+  ],
+  "region": {
+    "name": "unova",
+    "url": "https://pokeapi.co/api/v2/region/5/"
+  }
+}

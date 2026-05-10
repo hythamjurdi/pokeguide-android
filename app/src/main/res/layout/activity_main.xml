@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0d0d14">
 
+    <!-- Main app WebView -->
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
@@ -13,4 +14,74 @@
         android:overScrollMode="never"
         android:background="#0d0d14" />
 
-</RelativeLayout>
+    <!-- Guide browser overlay — initially GONE. Shows a second WebView for
+         loading external wiki/guide pages, with a floating toolbar. -->
+    <FrameLayout
+        android:id="@+id/guideBrowserOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#0d0d14">
+
+        <WebView
+            android:id="@+id/guideWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:background="#0d0d14" />
+
+        <!-- Floating toolbar with back + title + close -->
+        <LinearLayout
+            android:id="@+id/guideToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_gravity="top"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="#CC141420"
+            android:elevation="8dp">
+
+            <TextView
+                android:id="@+id/guideBackBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="‹"
+                android:textSize="28sp"
+                android:textColor="#CCCCCC"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/guideTitleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#999999"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp" />
+
+            <TextView
+                android:id="@+id/guideCloseBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="✕"
+                android:textSize="18sp"
+                android:textColor="#CCCCCC"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

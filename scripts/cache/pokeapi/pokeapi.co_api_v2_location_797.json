@@ -1,0 +1,135 @@
+{
+  "areas": [
+    {
+      "name": "ultra-space-ultra-crater",
+      "url": "https://pokeapi.co/api/v2/location-area/1140/"
+    },
+    {
+      "name": "ultra-space-ultra-deep-sea",
+      "url": "https://pokeapi.co/api/v2/location-area/1141/"
+    },
+    {
+      "name": "ultra-space-ultra-desert",
+      "url": "https://pokeapi.co/api/v2/location-area/1142/"
+    },
+    {
+      "name": "ultra-space-ultra-forest",
+      "url": "https://pokeapi.co/api/v2/location-area/1143/"
+    },
+    {
+      "name": "ultra-space-ultra-jungle",
+      "url": "https://pokeapi.co/api/v2/location-area/1144/"
+    },
+    {
+      "name": "ultra-space-ultra-plant",
+      "url": "https://pokeapi.co/api/v2/location-area/1145/"
+    },
+    {
+      "name": "ultra-space-ultra-ruin",
+      "url": "https://pokeapi.co/api/v2/location-area/1146/"
+    },
+    {
+      "name": "ultra-space-ultra-space-wilds-cliff",
+      "url": "https://pokeapi.co/api/v2/location-area/1195/"
+    },
+    {
+      "name": "ultra-space-ultra-space-wilds-water",
+      "url": "https://pokeapi.co/api/v2/location-area/1196/"
+    },
+    {
+      "name": "ultra-space-ultra-space-wilds-rocky",
+      "url": "https://pokeapi.co/api/v2/location-area/1197/"
+    },
+    {
+      "name": "ultra-space-ultra-space-wilds-cave",
+      "url": "https://pokeapi.co/api/v2/location-area/1198/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 190,
+      "generation": {
+        "name": "generation-vii",
+        "url": "https://pokeapi.co/api/v2/generation/7/"
+      }
+    }
+  ],
+  "id": 797,
+  "name": "ultra-space",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "ウルトラスペース"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "울트라스페이스"
+    },
+    {
+      "language": {
+        "name": "zh-hant",
+        "url": "https://pokeapi.co/api/v2/language/4/"
+      },
+      "name": "究極空間"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Ultra-Dimension"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Ultradimension"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Ultraespacio"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Ultramondo"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Ultra Space"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "ウルトラスペース"
+    },
+    {
+      "language": {
+        "name": "zh-hans",
+        "url": "https://pokeapi.co/api/v2/language/12/"
+      },
+      "name": "究极空间"
+    }
+  ],
+  "region": {
+    "name": "alola",
+    "url": "https://pokeapi.co/api/v2/region/7/"
+  }
+}

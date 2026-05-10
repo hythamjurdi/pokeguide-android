@@ -1,0 +1,1473 @@
+[
+ {
+  "id": "red-blue-gym-1-brock",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 1,
+  "name": "Brock",
+  "variant": null,
+  "city": "Pewter City",
+  "badge": "Boulder Badge",
+  "type": "rock",
+  "team": [
+   {
+    "n": "geodude",
+    "l": 12,
+    "t1": "rock",
+    "t2": "ground"
+   },
+   {
+    "n": "onix",
+    "l": 14,
+    "t1": "rock",
+    "t2": "ground"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-2-misty",
+  "games": [
+   "red-blue",
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 2,
+  "name": "Misty",
+  "variant": null,
+  "city": "Cerulean City",
+  "badge": "Cascade Badge",
+  "type": "water",
+  "team": [
+   {
+    "n": "staryu",
+    "l": 18,
+    "t1": "water",
+    "t2": null
+   },
+   {
+    "n": "starmie",
+    "l": 21,
+    "t1": "water",
+    "t2": "psychic"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-3-lt-surge",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 3,
+  "name": "Lt. Surge",
+  "variant": null,
+  "city": "Vermilion City",
+  "badge": "Thunder Badge",
+  "type": "electric",
+  "team": [
+   {
+    "n": "voltorb",
+    "l": 21,
+    "t1": "electric",
+    "t2": null
+   },
+   {
+    "n": "pikachu",
+    "l": 18,
+    "t1": "electric",
+    "t2": null
+   },
+   {
+    "n": "raichu",
+    "l": 24,
+    "t1": "electric",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-4-erika",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 4,
+  "name": "Erika",
+  "variant": null,
+  "city": "Celadon City",
+  "badge": "Rainbow Badge",
+  "type": "grass",
+  "team": [
+   {
+    "n": "victreebel",
+    "l": 29,
+    "t1": "grass",
+    "t2": "poison"
+   },
+   {
+    "n": "tangela",
+    "l": 24,
+    "t1": "grass",
+    "t2": null
+   },
+   {
+    "n": "vileplume",
+    "l": 29,
+    "t1": "grass",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-5-koga",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 5,
+  "name": "Koga",
+  "variant": null,
+  "city": "Fuchsia City",
+  "badge": "Soul Badge",
+  "type": "poison",
+  "team": [
+   {
+    "n": "koffing",
+    "l": 37,
+    "t1": "poison",
+    "t2": null
+   },
+   {
+    "n": "koffing",
+    "l": 37,
+    "t1": "poison",
+    "t2": null
+   },
+   {
+    "n": "muk",
+    "l": 39,
+    "t1": "poison",
+    "t2": null
+   },
+   {
+    "n": "weezing",
+    "l": 43,
+    "t1": "poison",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-6-sabrina",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 6,
+  "name": "Sabrina",
+  "variant": null,
+  "city": "Saffron City",
+  "badge": "Marsh Badge",
+  "type": "psychic",
+  "team": [
+   {
+    "n": "kadabra",
+    "l": 38,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "mr-mime",
+    "l": 37,
+    "t1": "psychic",
+    "t2": "fairy"
+   },
+   {
+    "n": "venomoth",
+    "l": 38,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "alakazam",
+    "l": 43,
+    "t1": "psychic",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-7-blaine",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 7,
+  "name": "Blaine",
+  "variant": null,
+  "city": "Cinnabar Island",
+  "badge": "Volcano Badge",
+  "type": "fire",
+  "team": [
+   {
+    "n": "growlithe",
+    "l": 42,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "ponyta",
+    "l": 40,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "rapidash",
+    "l": 42,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "arcanine",
+    "l": 47,
+    "t1": "fire",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-gym-8-giovanni",
+  "games": [
+   "red-blue"
+  ],
+  "role": "gym",
+  "n": 8,
+  "name": "Giovanni",
+  "variant": null,
+  "city": "Viridian City",
+  "badge": "Earth Badge",
+  "type": "ground",
+  "team": [
+   {
+    "n": "rhyhorn",
+    "l": 45,
+    "t1": "ground",
+    "t2": "rock"
+   },
+   {
+    "n": "dugtrio",
+    "l": 42,
+    "t1": "ground",
+    "t2": null
+   },
+   {
+    "n": "nidoqueen",
+    "l": 44,
+    "t1": "poison",
+    "t2": "ground"
+   },
+   {
+    "n": "nidoking",
+    "l": 45,
+    "t1": "poison",
+    "t2": "ground"
+   },
+   {
+    "n": "rhydon",
+    "l": 50,
+    "t1": "ground",
+    "t2": "rock"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-e4-1-lorelei",
+  "games": [
+   "red-blue",
+   "yellow"
+  ],
+  "role": "e4",
+  "n": 1,
+  "name": "Lorelei",
+  "variant": null,
+  "badge": null,
+  "type": "ice",
+  "team": [
+   {
+    "n": "dewgong",
+    "l": 54,
+    "t1": "water",
+    "t2": "ice"
+   },
+   {
+    "n": "cloyster",
+    "l": 53,
+    "t1": "water",
+    "t2": "ice"
+   },
+   {
+    "n": "slowbro",
+    "l": 54,
+    "t1": "water",
+    "t2": "psychic"
+   },
+   {
+    "n": "jynx",
+    "l": 56,
+    "t1": "ice",
+    "t2": "psychic"
+   },
+   {
+    "n": "lapras",
+    "l": 56,
+    "t1": "water",
+    "t2": "ice"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-e4-2-bruno",
+  "games": [
+   "red-blue",
+   "yellow"
+  ],
+  "role": "e4",
+  "n": 2,
+  "name": "Bruno",
+  "variant": null,
+  "badge": null,
+  "type": "fighting",
+  "team": [
+   {
+    "n": "onix",
+    "l": 53,
+    "t1": "rock",
+    "t2": "ground"
+   },
+   {
+    "n": "hitmonchan",
+    "l": 55,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "hitmonlee",
+    "l": 55,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "onix",
+    "l": 56,
+    "t1": "rock",
+    "t2": "ground"
+   },
+   {
+    "n": "machamp",
+    "l": 58,
+    "t1": "fighting",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-e4-3-agatha",
+  "games": [
+   "red-blue",
+   "yellow"
+  ],
+  "role": "e4",
+  "n": 3,
+  "name": "Agatha",
+  "variant": null,
+  "badge": null,
+  "type": "ghost",
+  "team": [
+   {
+    "n": "gengar",
+    "l": 56,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "golbat",
+    "l": 56,
+    "t1": "poison",
+    "t2": "flying"
+   },
+   {
+    "n": "haunter",
+    "l": 55,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "arbok",
+    "l": 58,
+    "t1": "poison",
+    "t2": null
+   },
+   {
+    "n": "gengar",
+    "l": 60,
+    "t1": "ghost",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-e4-4-lance",
+  "games": [
+   "red-blue",
+   "yellow"
+  ],
+  "role": "e4",
+  "n": 4,
+  "name": "Lance",
+  "variant": null,
+  "badge": null,
+  "type": "dragon",
+  "team": [
+   {
+    "n": "gyarados",
+    "l": 58,
+    "t1": "water",
+    "t2": "flying"
+   },
+   {
+    "n": "dragonair",
+    "l": 56,
+    "t1": "dragon",
+    "t2": null
+   },
+   {
+    "n": "dragonair",
+    "l": 56,
+    "t1": "dragon",
+    "t2": null
+   },
+   {
+    "n": "aerodactyl",
+    "l": 60,
+    "t1": "rock",
+    "t2": "flying"
+   },
+   {
+    "n": "dragonite",
+    "l": 62,
+    "t1": "dragon",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-champion-blue",
+  "games": [
+   "red-blue"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Bulbasaur as starter",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "pidgeot",
+    "l": 61,
+    "t1": "normal",
+    "t2": "flying"
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "rhydon",
+    "l": 61,
+    "t1": "ground",
+    "t2": "rock"
+   },
+   {
+    "n": "exeggutor",
+    "l": 61,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "gyarados",
+    "l": 63,
+    "t1": "water",
+    "t2": "flying"
+   },
+   {
+    "n": "charizard",
+    "l": 65,
+    "t1": "fire",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "red-blue-champion-blue",
+  "games": [
+   "red-blue"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Charmander as starter",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "pidgeot",
+    "l": 61,
+    "t1": "normal",
+    "t2": "flying"
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "rhydon",
+    "l": 61,
+    "t1": "ground",
+    "t2": "rock"
+   },
+   {
+    "n": "arcanine",
+    "l": 61,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "exeggutor",
+    "l": 63,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "blastoise",
+    "l": 65,
+    "t1": "water",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "red-blue-champion-blue",
+  "games": [
+   "red-blue"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Squirtle as starter",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "pidgeot",
+    "l": 61,
+    "t1": "normal",
+    "t2": "flying"
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "rhydon",
+    "l": 61,
+    "t1": "ground",
+    "t2": "rock"
+   },
+   {
+    "n": "gyarados",
+    "l": 61,
+    "t1": "water",
+    "t2": "flying"
+   },
+   {
+    "n": "arcanine",
+    "l": 63,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "venusaur",
+    "l": 65,
+    "t1": "grass",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-1-brock",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 1,
+  "name": "Brock",
+  "variant": null,
+  "city": "Pewter City",
+  "badge": "Boulder Badge",
+  "type": "rock",
+  "team": [
+   {
+    "n": "geodude",
+    "l": 10,
+    "t1": "rock",
+    "t2": "ground"
+   },
+   {
+    "n": "onix",
+    "l": 12,
+    "t1": "rock",
+    "t2": "ground"
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-3-lt-surge",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 3,
+  "name": "Lt. Surge",
+  "variant": null,
+  "city": "Vermilion City",
+  "badge": "Thunder Badge",
+  "type": "electric",
+  "team": [
+   {
+    "n": "raichu",
+    "l": 28,
+    "t1": "electric",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-4-erika",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 4,
+  "name": "Erika",
+  "variant": null,
+  "city": "Celadon City",
+  "badge": "Rainbow Badge",
+  "type": "grass",
+  "team": [
+   {
+    "n": "tangela",
+    "l": 30,
+    "t1": "grass",
+    "t2": null
+   },
+   {
+    "n": "weepinbell",
+    "l": 32,
+    "t1": "grass",
+    "t2": "poison"
+   },
+   {
+    "n": "gloom",
+    "l": 32,
+    "t1": "grass",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-5-koga",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 5,
+  "name": "Koga",
+  "variant": null,
+  "city": "Fuchsia City",
+  "badge": "Soul Badge",
+  "type": "poison",
+  "team": [
+   {
+    "n": "venonat",
+    "l": 44,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "venonat",
+    "l": 46,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "venonat",
+    "l": 48,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "venomoth",
+    "l": 50,
+    "t1": "bug",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-6-sabrina",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 6,
+  "name": "Sabrina",
+  "variant": null,
+  "city": "Saffron City",
+  "badge": "Marsh Badge",
+  "type": "psychic",
+  "team": [
+   {
+    "n": "abra",
+    "l": 50,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "kadabra",
+    "l": 50,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "alakazam",
+    "l": 50,
+    "t1": "psychic",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-7-blaine",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 7,
+  "name": "Blaine",
+  "variant": null,
+  "city": "Cinnabar Island",
+  "badge": "Volcano Badge",
+  "type": "fire",
+  "team": [
+   {
+    "n": "ninetales",
+    "l": 48,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "rapidash",
+    "l": 50,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "arcanine",
+    "l": 54,
+    "t1": "fire",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "yellow-gym-8-giovanni",
+  "games": [
+   "yellow"
+  ],
+  "role": "gym",
+  "n": 8,
+  "name": "Giovanni",
+  "variant": null,
+  "city": "Viridian City",
+  "badge": "Earth Badge",
+  "type": "ground",
+  "team": [
+   {
+    "n": "dugtrio",
+    "l": 50,
+    "t1": "ground",
+    "t2": null
+   },
+   {
+    "n": "persian",
+    "l": 53,
+    "t1": "normal",
+    "t2": null
+   },
+   {
+    "n": "nidoqueen",
+    "l": 53,
+    "t1": "poison",
+    "t2": "ground"
+   },
+   {
+    "n": "nidoking",
+    "l": 55,
+    "t1": "poison",
+    "t2": "ground"
+   },
+   {
+    "n": "rhydon",
+    "l": 55,
+    "t1": "ground",
+    "t2": "rock"
+   }
+  ]
+ },
+ {
+  "id": "yellow-champion-blue",
+  "games": [
+   "yellow"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Eevee → Vaporeon",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "sandslash",
+    "l": 61,
+    "t1": "ground",
+    "t2": null
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "exeggutor",
+    "l": 61,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "ninetales",
+    "l": 61,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "magneton",
+    "l": 63,
+    "t1": "electric",
+    "t2": "steel"
+   },
+   {
+    "n": "vaporeon",
+    "l": 65,
+    "t1": "water",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "yellow-champion-blue",
+  "games": [
+   "yellow"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Eevee → Jolteon",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "sandslash",
+    "l": 61,
+    "t1": "ground",
+    "t2": null
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "exeggutor",
+    "l": 61,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "cloyster",
+    "l": 61,
+    "t1": "water",
+    "t2": "ice"
+   },
+   {
+    "n": "ninetales",
+    "l": 63,
+    "t1": "fire",
+    "t2": null
+   },
+   {
+    "n": "jolteon",
+    "l": 65,
+    "t1": "electric",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "yellow-champion-blue",
+  "games": [
+   "yellow"
+  ],
+  "role": "champion",
+  "name": "Blue",
+  "variant": "Eevee → Flareon",
+  "badge": null,
+  "type": "mixed",
+  "team": [
+   {
+    "n": "sandslash",
+    "l": 61,
+    "t1": "ground",
+    "t2": null
+   },
+   {
+    "n": "alakazam",
+    "l": 59,
+    "t1": "psychic",
+    "t2": null
+   },
+   {
+    "n": "exeggutor",
+    "l": 61,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "magneton",
+    "l": 61,
+    "t1": "electric",
+    "t2": "steel"
+   },
+   {
+    "n": "cloyster",
+    "l": 63,
+    "t1": "water",
+    "t2": "ice"
+   },
+   {
+    "n": "flareon",
+    "l": 65,
+    "t1": "fire",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-1-falkner",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 1,
+  "name": "Falkner",
+  "variant": null,
+  "city": "Violet City",
+  "badge": "Zephyr Badge",
+  "type": "flying",
+  "team": [
+   {
+    "n": "pidgey",
+    "l": 7,
+    "t1": "normal",
+    "t2": "flying"
+   },
+   {
+    "n": "pidgeotto",
+    "l": 9,
+    "t1": "normal",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-2-bugsy",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 2,
+  "name": "Bugsy",
+  "variant": null,
+  "city": "Azalea Town",
+  "badge": "Hive Badge",
+  "type": "bug",
+  "team": [
+   {
+    "n": "metapod",
+    "l": 14,
+    "t1": "bug",
+    "t2": null
+   },
+   {
+    "n": "kakuna",
+    "l": 14,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "scyther",
+    "l": 16,
+    "t1": "bug",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-3-whitney",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 3,
+  "name": "Whitney",
+  "variant": null,
+  "city": "Goldenrod City",
+  "badge": "Plain Badge",
+  "type": "normal",
+  "team": [
+   {
+    "n": "clefairy",
+    "l": 18,
+    "t1": "fairy",
+    "t2": null
+   },
+   {
+    "n": "miltank",
+    "l": 20,
+    "t1": "normal",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-4-morty",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 4,
+  "name": "Morty",
+  "variant": null,
+  "city": "Ecruteak City",
+  "badge": "Fog Badge",
+  "type": "ghost",
+  "team": [
+   {
+    "n": "gastly",
+    "l": 21,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "haunter",
+    "l": 21,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "haunter",
+    "l": 23,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "gengar",
+    "l": 25,
+    "t1": "ghost",
+    "t2": "poison"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-5-chuck",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 5,
+  "name": "Chuck",
+  "variant": null,
+  "city": "Cianwood City",
+  "badge": "Storm Badge",
+  "type": "fighting",
+  "team": [
+   {
+    "n": "primeape",
+    "l": 27,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "poliwrath",
+    "l": 30,
+    "t1": "water",
+    "t2": "fighting"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-6-jasmine",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 6,
+  "name": "Jasmine",
+  "variant": null,
+  "city": "Olivine City",
+  "badge": "Mineral Badge",
+  "type": "steel",
+  "team": [
+   {
+    "n": "magnemite",
+    "l": 30,
+    "t1": "electric",
+    "t2": "steel"
+   },
+   {
+    "n": "magnemite",
+    "l": 30,
+    "t1": "electric",
+    "t2": "steel"
+   },
+   {
+    "n": "steelix",
+    "l": 35,
+    "t1": "steel",
+    "t2": "ground"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-7-pryce",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 7,
+  "name": "Pryce",
+  "variant": null,
+  "city": "Mahogany Town",
+  "badge": "Glacier Badge",
+  "type": "ice",
+  "team": [
+   {
+    "n": "seel",
+    "l": 27,
+    "t1": "water",
+    "t2": null
+   },
+   {
+    "n": "dewgong",
+    "l": 29,
+    "t1": "water",
+    "t2": "ice"
+   },
+   {
+    "n": "piloswine",
+    "l": 31,
+    "t1": "ice",
+    "t2": "ground"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-gym-8-clair",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "gym",
+  "n": 8,
+  "name": "Clair",
+  "variant": null,
+  "city": "Blackthorn City",
+  "badge": "Rising Badge",
+  "type": "dragon",
+  "team": [
+   {
+    "n": "dragonair",
+    "l": 37,
+    "t1": "dragon",
+    "t2": null
+   },
+   {
+    "n": "dragonair",
+    "l": 37,
+    "t1": "dragon",
+    "t2": null
+   },
+   {
+    "n": "dragonair",
+    "l": 37,
+    "t1": "dragon",
+    "t2": null
+   },
+   {
+    "n": "kingdra",
+    "l": 40,
+    "t1": "water",
+    "t2": "dragon"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-e4-1-will",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "e4",
+  "n": 1,
+  "name": "Will",
+  "variant": null,
+  "badge": null,
+  "type": "psychic",
+  "team": [
+   {
+    "n": "xatu",
+    "l": 40,
+    "t1": "psychic",
+    "t2": "flying"
+   },
+   {
+    "n": "jynx",
+    "l": 41,
+    "t1": "ice",
+    "t2": "psychic"
+   },
+   {
+    "n": "slowbro",
+    "l": 41,
+    "t1": "water",
+    "t2": "psychic"
+   },
+   {
+    "n": "exeggutor",
+    "l": 41,
+    "t1": "grass",
+    "t2": "psychic"
+   },
+   {
+    "n": "xatu",
+    "l": 42,
+    "t1": "psychic",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-e4-2-koga",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "e4",
+  "n": 2,
+  "name": "Koga",
+  "variant": null,
+  "badge": null,
+  "type": "poison",
+  "team": [
+   {
+    "n": "ariados",
+    "l": 40,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "venomoth",
+    "l": 41,
+    "t1": "bug",
+    "t2": "poison"
+   },
+   {
+    "n": "forretress",
+    "l": 43,
+    "t1": "bug",
+    "t2": "steel"
+   },
+   {
+    "n": "muk",
+    "l": 42,
+    "t1": "poison",
+    "t2": null
+   },
+   {
+    "n": "crobat",
+    "l": 44,
+    "t1": "poison",
+    "t2": "flying"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-e4-3-bruno",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "e4",
+  "n": 3,
+  "name": "Bruno",
+  "variant": null,
+  "badge": null,
+  "type": "fighting",
+  "team": [
+   {
+    "n": "hitmontop",
+    "l": 42,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "hitmonlee",
+    "l": 42,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "hitmonchan",
+    "l": 42,
+    "t1": "fighting",
+    "t2": null
+   },
+   {
+    "n": "onix",
+    "l": 43,
+    "t1": "rock",
+    "t2": "ground"
+   },
+   {
+    "n": "machamp",
+    "l": 46,
+    "t1": "fighting",
+    "t2": null
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-e4-4-karen",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "e4",
+  "n": 4,
+  "name": "Karen",
+  "variant": null,
+  "badge": null,
+  "type": "dark",
+  "team": [
+   {
+    "n": "umbreon",
+    "l": 42,
+    "t1": "dark",
+    "t2": null
+   },
+   {
+    "n": "vileplume",
+    "l": 42,
+    "t1": "grass",
+    "t2": "poison"
+   },
+   {
+    "n": "murkrow",
+    "l": 44,
+    "t1": "dark",
+    "t2": "flying"
+   },
+   {
+    "n": "gengar",
+    "l": 45,
+    "t1": "ghost",
+    "t2": "poison"
+   },
+   {
+    "n": "houndoom",
+    "l": 47,
+    "t1": "dark",
+    "t2": "fire"
+   }
+  ]
+ },
+ {
+  "id": "gold-silver-champion-lance",
+  "games": [
+   "gold-silver"
+  ],
+  "role": "champion",
+  "name": "Lance",
+  "variant": null,
+  "badge": null,
+  "type": "dragon",
+  "team": [
+   {
+    "n": "gyarados",
+    "l": 44,
+    "t1": "water",
+    "t2": "flying"
+   },
+   {
+    "n": "dragonite",
+    "l": 47,
+    "t1": "dragon",
+    "t2": "flying"
+   },
+   {
+    "n": "charizard",
+    "l": 46,
+    "t1": "fire",
+    "t2": "flying"
+   },
+   {
+    "n": "aerodactyl",
+    "l": 46,
+    "t1": "rock",
+    "t2": "flying"
+   },
+   {
+    "n": "dragonite",
+    "l": 47,
+    "t1": "dragon",
+    "t2": "flying"
+   },
+   {
+    "n": "dragonite",
+    "l": 50,
+    "t1": "dragon",
+    "t2": "flying"
+   }
+  ]
+ }
+]

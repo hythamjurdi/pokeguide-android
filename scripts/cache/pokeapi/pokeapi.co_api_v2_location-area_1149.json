@@ -1,0 +1,589 @@
+{
+  "encounter_method_rates": [],
+  "game_index": 0,
+  "id": 1149,
+  "location": {
+    "name": "ultra-space-wilds",
+    "url": "https://pokeapi.co/api/v2/location/1051/"
+  },
+  "name": "ultra-space-wilds-crag",
+  "names": [],
+  "pokemon_encounters": [
+    {
+      "pokemon": {
+        "name": "mewtwo",
+        "url": "https://pokeapi.co/api/v2/pokemon/150/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "raikou",
+        "url": "https://pokeapi.co/api/v2/pokemon/243/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "entei",
+        "url": "https://pokeapi.co/api/v2/pokemon/244/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "nuzleaf",
+        "url": "https://pokeapi.co/api/v2/pokemon/274/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "grumpig",
+        "url": "https://pokeapi.co/api/v2/pokemon/326/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "drapion",
+        "url": "https://pokeapi.co/api/v2/pokemon/452/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "dialga",
+        "url": "https://pokeapi.co/api/v2/pokemon/483/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "audino",
+        "url": "https://pokeapi.co/api/v2/pokemon/531/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "cobalion",
+        "url": "https://pokeapi.co/api/v2/pokemon/638/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "terrakion",
+        "url": "https://pokeapi.co/api/v2/pokemon/639/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "virizion",
+        "url": "https://pokeapi.co/api/v2/pokemon/640/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "reshiram",
+        "url": "https://pokeapi.co/api/v2/pokemon/643/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "zekrom",
+        "url": "https://pokeapi.co/api/v2/pokemon/644/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "heliolisk",
+        "url": "https://pokeapi.co/api/v2/pokemon/695/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        },
+        {
+          "encounter_details": [
+            {
+              "chance": 15,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 15,
+          "version": {
+            "name": "ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version/30/"
+          }
+        }
+      ]
+    },
+    {
+      "pokemon": {
+        "name": "xerneas",
+        "url": "https://pokeapi.co/api/v2/pokemon/716/"
+      },
+      "version_details": [
+        {
+          "encounter_details": [
+            {
+              "chance": 100,
+              "condition_values": [],
+              "max_level": 60,
+              "method": {
+                "name": "only-one",
+                "url": "https://pokeapi.co/api/v2/encounter-method/20/"
+              },
+              "min_level": 60
+            }
+          ],
+          "max_chance": 100,
+          "version": {
+            "name": "ultra-sun",
+            "url": "https://pokeapi.co/api/v2/version/29/"
+          }
+        }
+      ]
+    }
+  ]
+}

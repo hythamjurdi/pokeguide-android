@@ -1,0 +1,97 @@
+{
+  "areas": [
+    {
+      "name": "terminus-cave-1f",
+      "url": "https://pokeapi.co/api/v2/location-area/754/"
+    },
+    {
+      "name": "terminus-cave-b1f-left",
+      "url": "https://pokeapi.co/api/v2/location-area/755/"
+    },
+    {
+      "name": "terminus-cave-b1f-right",
+      "url": "https://pokeapi.co/api/v2/location-area/756/"
+    },
+    {
+      "name": "terminus-cave-b2f",
+      "url": "https://pokeapi.co/api/v2/location-area/757/"
+    },
+    {
+      "name": "terminus-cave-zygardes-chamber",
+      "url": "https://pokeapi.co/api/v2/location-area/758/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 140,
+      "generation": {
+        "name": "generation-vi",
+        "url": "https://pokeapi.co/api/v2/generation/6/"
+      }
+    }
+  ],
+  "id": 676,
+  "name": "terminus-cave",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "ついのどうくつ"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "끝의 동굴"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Grotte Coda"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Omega-Höhle"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Cueva Desenlace"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Grotta Climax"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Terminus Cave"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "終の洞窟"
+    }
+  ],
+  "region": {
+    "name": "kalos",
+    "url": "https://pokeapi.co/api/v2/region/6/"
+  }
+}

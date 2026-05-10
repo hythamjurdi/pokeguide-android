@@ -1,0 +1,149 @@
+{
+  "areas": [
+    {
+      "name": "friend-safari-normal",
+      "url": "https://pokeapi.co/api/v2/location-area/1322/"
+    },
+    {
+      "name": "friend-safari-fire",
+      "url": "https://pokeapi.co/api/v2/location-area/1323/"
+    },
+    {
+      "name": "friend-safari-fighting",
+      "url": "https://pokeapi.co/api/v2/location-area/1324/"
+    },
+    {
+      "name": "friend-safari-water",
+      "url": "https://pokeapi.co/api/v2/location-area/1325/"
+    },
+    {
+      "name": "friend-safari-flying",
+      "url": "https://pokeapi.co/api/v2/location-area/1326/"
+    },
+    {
+      "name": "friend-safari-grass",
+      "url": "https://pokeapi.co/api/v2/location-area/1327/"
+    },
+    {
+      "name": "friend-safari-poison",
+      "url": "https://pokeapi.co/api/v2/location-area/1328/"
+    },
+    {
+      "name": "friend-safari-electric",
+      "url": "https://pokeapi.co/api/v2/location-area/1329/"
+    },
+    {
+      "name": "friend-safari-ground",
+      "url": "https://pokeapi.co/api/v2/location-area/1330/"
+    },
+    {
+      "name": "friend-safari-psychic",
+      "url": "https://pokeapi.co/api/v2/location-area/1331/"
+    },
+    {
+      "name": "friend-safari-rock",
+      "url": "https://pokeapi.co/api/v2/location-area/1332/"
+    },
+    {
+      "name": "friend-safari-ice",
+      "url": "https://pokeapi.co/api/v2/location-area/1333/"
+    },
+    {
+      "name": "friend-safari-bug",
+      "url": "https://pokeapi.co/api/v2/location-area/1334/"
+    },
+    {
+      "name": "friend-safari-dragon",
+      "url": "https://pokeapi.co/api/v2/location-area/1335/"
+    },
+    {
+      "name": "friend-safari-ghost",
+      "url": "https://pokeapi.co/api/v2/location-area/1336/"
+    },
+    {
+      "name": "friend-safari-dark",
+      "url": "https://pokeapi.co/api/v2/location-area/1337/"
+    },
+    {
+      "name": "friend-safari-steel",
+      "url": "https://pokeapi.co/api/v2/location-area/1338/"
+    },
+    {
+      "name": "friend-safari-fairy",
+      "url": "https://pokeapi.co/api/v2/location-area/1339/"
+    }
+  ],
+  "game_indices": [
+    {
+      "game_index": 148,
+      "generation": {
+        "name": "generation-vi",
+        "url": "https://pokeapi.co/api/v2/generation/6/"
+      }
+    }
+  ],
+  "id": 680,
+  "name": "friend-safari",
+  "names": [
+    {
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "name": "フレンドサファリ"
+    },
+    {
+      "language": {
+        "name": "ko",
+        "url": "https://pokeapi.co/api/v2/language/3/"
+      },
+      "name": "프렌드사파리"
+    },
+    {
+      "language": {
+        "name": "fr",
+        "url": "https://pokeapi.co/api/v2/language/5/"
+      },
+      "name": "Safari des Amis"
+    },
+    {
+      "language": {
+        "name": "de",
+        "url": "https://pokeapi.co/api/v2/language/6/"
+      },
+      "name": "Kontaktsafari"
+    },
+    {
+      "language": {
+        "name": "es",
+        "url": "https://pokeapi.co/api/v2/language/7/"
+      },
+      "name": "Safari Amistad"
+    },
+    {
+      "language": {
+        "name": "it",
+        "url": "https://pokeapi.co/api/v2/language/8/"
+      },
+      "name": "Safari Amici"
+    },
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Friend Safari"
+    },
+    {
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "name": "フレンドサファリ"
+    }
+  ],
+  "region": {
+    "name": "kalos",
+    "url": "https://pokeapi.co/api/v2/region/6/"
+  }
+}
