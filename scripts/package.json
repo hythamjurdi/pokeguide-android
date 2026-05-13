@@ -1,0 +1,13 @@
+{
+  "name": "pokeguide-scrapers",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "scrape-bosses": "node scrape-bosses.js",
+    "scrape-catchability": "node scrape-catchability.js",
+    "scrape-swsh": "node scrape-catchability.js sword-shield"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0"
+  }
+}
